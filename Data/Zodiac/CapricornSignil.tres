@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Capricorn"
+Description = "The Sea-Goat - The tenth sign of the zodiac, known for discipline, responsibility, and ambition."
+Symbol = "♑"
+Element = "Earth"
+Modality = "Cardinal"
+PrimaryEffect = "Zero stamina cost for climbing"
+SecondaryEffect = "Can climb any obstacle"
+PrimaryEffectValue = 0.0
+SecondaryEffectValue = 0.0
+IconPath = "res://Assets/Icons/capricorn_icon.png"
+SignColor = Color(0.3, 0.3, 0.3, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.0
+DamageModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+SpecialAbility = "Mountaineer: Climbing over obstacles costs zero stamina."
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnDodgeEffect = false

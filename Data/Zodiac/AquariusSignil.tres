@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Aquarius"
+Description = "The Water-Bearer - The eleventh sign of the zodiac, known for innovation, independence, and humanitarianism."
+Symbol = "♒"
+Element = "Air"
+Modality = "Fixed"
+PrimaryEffect = "Create slowing puddle after dodge"
+SecondaryEffect = "Slows enemies by 30%"
+PrimaryEffectValue = 0.3
+SecondaryEffectValue = 0.0
+IconPath = "res://Assets/Icons/aquarius_icon.png"
+SignColor = Color(0.2, 0.5, 0.9, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.0
+DamageModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+SpecialAbility = "Stagnant Waters: Create a slowing puddle after dodging that reduces enemy movement speed by 30%."
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnDodgeEffect = true

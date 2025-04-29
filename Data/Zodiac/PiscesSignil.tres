@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Pisces"
+Description = "The Fish - The twelfth sign of the zodiac, known for compassion, intuition, and spiritual connection."
+Symbol = "♓"
+Element = "Water"
+Modality = "Mutable"
+PrimaryEffect = "Chain lightning when under 30% HP"
+SecondaryEffect = "Lightning chains to 2 foes"
+PrimaryEffectValue = 0.3
+SecondaryEffectValue = 2.0
+IconPath = "res://Assets/Icons/pisces_icon.png"
+SignColor = Color(0.4, 0.6, 0.8, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.0
+DamageModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+SpecialAbility = "Electric Current: When below 30% health, your attacks chain lightning to 2 additional enemies."
+HasOnKillEffect = false
+HasOnHitEffect = true
+HasOnDodgeEffect = false

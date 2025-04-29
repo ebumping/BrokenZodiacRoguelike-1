@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Virgo"
+Description = "The Maiden - The sixth sign of the zodiac, known for analytical skills, attention to detail, and practicality."
+Symbol = "♍"
+Element = "Earth"
+Modality = "Mutable"
+PrimaryEffect = "Consumables heal 50% more"
+SecondaryEffect = "Consumables drop 20% less"
+PrimaryEffectValue = 0.5
+SecondaryEffectValue = -0.2
+IconPath = "res://Assets/Icons/virgo_icon.png"
+SignColor = Color(0.20, 0.75, 0.30, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.0
+DamageModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+SpecialAbility = "Efficient Healing: Consumable items heal for 50% more, but drop 20% less frequently."
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnDodgeEffect = false

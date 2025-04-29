@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Cancer"
+Description = "The Crab - The fourth sign of the zodiac, known for sensitivity, intuition, and defense."
+Symbol = "♋"
+Element = "Water"
+Modality = "Cardinal"
+PrimaryEffect = "Gain protective shell"
+SecondaryEffect = "Soaks 30 damage every room"
+PrimaryEffectValue = 30.0
+SecondaryEffectValue = 0.0
+IconPath = "res://Assets/Icons/cancer_icon.png"
+SignColor = Color(0.15, 0.55, 0.85, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.0
+DamageModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+SpecialAbility = "Carapace: Gain a protective shell that absorbs the next 30 damage upon entering each new room."
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnDodgeEffect = false

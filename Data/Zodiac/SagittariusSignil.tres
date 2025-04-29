@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Sagittarius"
+Description = "The Archer - The ninth sign of the zodiac, known for optimism, adventure, and freedom."
+Symbol = "♐"
+Element = "Fire"
+Modality = "Mutable"
+PrimaryEffect = "+10% projectile speed"
+SecondaryEffect = "Roll cooldown -20%"
+PrimaryEffectValue = 0.1
+SecondaryEffectValue = -0.2
+IconPath = "res://Assets/Icons/sagittarius_icon.png"
+SignColor = Color(0.9, 0.4, 0.1, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.0
+DamageModifier = 0.0
+CooldownModifier = -0.2
+CriticalModifier = 0.0
+SpecialAbility = "Swift Shot: Projectiles travel 10% faster and your roll cooldown is reduced by 20%."
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnDodgeEffect = true

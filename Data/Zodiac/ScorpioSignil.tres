@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Scorpio"
+Description = "The Scorpion - The eighth sign of the zodiac, known for intensity, passion, and transformation."
+Symbol = "♏"
+Element = "Water"
+Modality = "Fixed"
+PrimaryEffect = "Bullets inflict stacking toxin"
+SecondaryEffect = "5% DPS toxin damage"
+PrimaryEffectValue = 0.05
+SecondaryEffectValue = 0.0
+IconPath = "res://Assets/Icons/scorpio_icon.png"
+SignColor = Color(0.6, 0.1, 0.3, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.0
+DamageModifier = 0.05
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+SpecialAbility = "Venomous Strike: Bullets inflict a stacking toxin effect that deals 5% damage per second."
+HasOnKillEffect = false
+HasOnHitEffect = true
+HasOnDodgeEffect = false

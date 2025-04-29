@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Leo"
+Description = "The Lion - The fifth sign of the zodiac, known for confidence, creativity, and leadership."
+Symbol = "♌"
+Element = "Fire"
+Modality = "Fixed"
+PrimaryEffect = "Standing in light grants critical bonus"
+SecondaryEffect = "+25% critical hit chance"
+PrimaryEffectValue = 0.25
+SecondaryEffectValue = 0.0
+IconPath = "res://Assets/Icons/leo_icon.png"
+SignColor = Color(0.95, 0.65, 0.10, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.0
+DamageModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.25
+SpecialAbility = "Solar Potency: Standing in light grants a 25% bonus to critical hit chance."
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnDodgeEffect = false

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Libra"
+Description = "The Scales - The seventh sign of the zodiac, known for balance, harmony, and justice."
+Symbol = "♎"
+Element = "Air"
+Modality = "Cardinal"
+PrimaryEffect = "Damage and healing equalized"
+SecondaryEffect = "Shared with nearest ally every 5 seconds"
+PrimaryEffectValue = 5.0
+SecondaryEffectValue = 0.0
+IconPath = "res://Assets/Icons/libra_icon.png"
+SignColor = Color(0.6, 0.6, 0.9, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.0
+DamageModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+SpecialAbility = "Perfect Balance: Damage dealt and healing received is equalized between you and your nearest ally every 5 seconds."
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnDodgeEffect = false
