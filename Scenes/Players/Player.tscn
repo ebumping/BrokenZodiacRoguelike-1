@@ -1,0 +1,250 @@
+[gd_scene load_steps=21 format=3 uid="uid://bhxgxg6rctu0l"]
+
+[ext_resource type="Script" path="res://Scripts/Core/PlayerController.cs" id="1_i6f3j"]
+[ext_resource type="Texture2D" uid="uid://bkewvw582l584" path="res://Assets/Sprites/player_detective.png" id="2_x38du"]
+[ext_resource type="Shader" path="res://Assets/Shaders/Glow.gdshader" id="3_5j8qp"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kq8r4"]
+radius = 12.0
+height = 34.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxvgc"]
+shader = ExtResource("3_5j8qp")
+shader_parameter/glow_color = Color(0.2, 0.4, 0.7, 1)
+shader_parameter/glow_intensity = 0.2
+shader_parameter/glow_size = 2.0
+shader_parameter/glow_threshold = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04ebk"]
+atlas = ExtResource("2_x38du")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmojw"]
+atlas = ExtResource("2_x38du")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cppkx"]
+atlas = ExtResource("2_x38du")
+region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywglj"]
+atlas = ExtResource("2_x38du")
+region = Rect2(144, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt1jl"]
+atlas = ExtResource("2_x38du")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxp8b"]
+atlas = ExtResource("2_x38du")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wmro"]
+atlas = ExtResource("2_x38du")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1hug"]
+atlas = ExtResource("2_x38du")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm4wb"]
+atlas = ExtResource("2_x38du")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvj3p"]
+atlas = ExtResource("2_x38du")
+region = Rect2(48, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i77b"]
+atlas = ExtResource("2_x38du")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbh5c"]
+atlas = ExtResource("2_x38du")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvbli"]
+atlas = ExtResource("2_x38du")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yrj3"]
+atlas = ExtResource("2_x38du")
+region = Rect2(144, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j8p45"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04ebk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmojw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cppkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywglj")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt1jl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxp8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wmro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1hug")
+}],
+"loop": true,
+"name": &"cast",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm4wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvj3p")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i77b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i77b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbh5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvbli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yrj3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["Players"]]
+z_index = 10
+collision_layer = 2
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_i6f3j")
+_syncTransformPath = NodePath("SyncTransform")
+_projectileSpawnPoint = NodePath("AimPivot/ProjectileSpawnPoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_kq8r4")
+
+[node name="Shadow" type="Polygon2D" parent="."]
+position = Vector2(0, 8)
+color = Color(0, 0, 0, 0.188235)
+polygon = PackedVector2Array(-12, 10, -8, 12, 0, 14, 8, 12, 12, 10, 14, 8, 12, 6, 8, 4, 0, 2, -8, 4, -12, 6, -14, 8)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_cxvgc")
+sprite_frames = SubResource("SpriteFrames_j8p45")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AimPivot" type="Node2D" parent="."]
+
+[node name="WeaponSprite" type="Sprite2D" parent="AimPivot"]
+position = Vector2(20, 0)
+
+[node name="ProjectileSpawnPoint" type="Marker2D" parent="AimPivot"]
+position = Vector2(30, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="AimPivot"]
+target_position = Vector2(100, 0)
+collision_mask = 5
+
+[node name="DodgeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DodgeCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SpellCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HealthRegenTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="ManaRegenTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="SyncTransform" type="MultiplayerSynchronizer" parent="."]
+replication_config = null
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -8.0
+max_distance = 500.0
+attenuation = 2.0
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
+offset_bottom = -40.0
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 10.0
+grow_horizontal = 2
+value = 100.0
+show_percentage = false
+
+[node name="ManaBar" type="ProgressBar" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 11.0
+offset_bottom = 15.0
+grow_horizontal = 2
+value = 100.0
+show_percentage = false
+
+[node name="NameLabel" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -18.0
+offset_bottom = 5.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "Detective"
+horizontal_alignment = 1

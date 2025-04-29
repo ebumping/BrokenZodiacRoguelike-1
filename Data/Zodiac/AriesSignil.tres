@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_q2rsc"]
+
+[resource]
+script = ExtResource("1_q2rsc")
+SignName = "Aries"
+Description = "The Ram - The first sign of the zodiac, known for energy, initiative, and courage."
+Symbol = "♈"
+Element = "Fire"
+Modality = "Cardinal"
+PrimaryEffect = "+15% sprint speed"
+SecondaryEffect = "First hit of magazine deals 40% extra damage"
+PrimaryEffectValue = 0.15
+SecondaryEffectValue = 0.4
+IconPath = "res://Assets/Icons/aries_icon.png"
+SignColor = Color(0.85, 0.15, 0.15, 1)
+HealthModifier = 0.0
+SpeedModifier = 0.15
+DamageModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+SpecialAbility = "First Strike: The first bullet in your magazine after reloading deals 40% extra damage."
+HasOnKillEffect = false
+HasOnHitEffect = true
+HasOnDodgeEffect = false

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TarotCard" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/TarotCard.cs" id="1_h4gki"]
+
+[resource]
+script = ExtResource("1_h4gki")
+CardName = "Ace of Cups"
+Description = "Represents emotional fulfillment, joy, and compassion. The beginning of emotional nourishment."
+Type = 1
+Suit = 2
+Value = 1
+MajorArcanaNumber = ""
+PrimaryEffect = "10% lifesteal on all attacks"
+SecondaryEffect = "Healing effects are 15% more effective"
+PrimaryEffectValue = 0.1
+SecondaryEffectValue = 0.15
+IsSingleUse = false
+IsPassive = true
+IconPath = "res://Assets/Tarot/ace_cups.png"
+CardColor = Color(0.1, 0.4, 0.9, 1)
+HealthModifier = 0.0
+DamageModifier = 0.0
+SpeedModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+ActiveAbility = ""
+HasOnKillEffect = false
+HasOnHitEffect = true
+HasOnRoomClearEffect = false
+ComboEffect = "Three Cups: Lifesteal increased to 20%, excess healing converts to temporary shield"
+ComboThreshold = 3

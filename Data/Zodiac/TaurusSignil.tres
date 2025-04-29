@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ZodiacSignil" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ZodiacSignil.cs" id="1_d7g0e"]
+
+[resource]
+script = ExtResource("1_d7g0e")
+SignName = "Taurus"
+Description = "The Bull - The second sign of the zodiac, known for stability, persistence, and reliability."
+Symbol = "♉"
+Element = "Earth"
+Modality = "Fixed"
+PrimaryEffect = "+20% max HP"
+SecondaryEffect = "Knockback halved"
+PrimaryEffectValue = 0.2
+SecondaryEffectValue = 0.5
+IconPath = "res://Assets/Icons/taurus_icon.png"
+SignColor = Color(0.15, 0.55, 0.15, 1)
+HealthModifier = 0.2
+SpeedModifier = 0.0
+DamageModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+SpecialAbility = "Immovable: You receive only half the normal knockback from enemy attacks."
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnDodgeEffect = false

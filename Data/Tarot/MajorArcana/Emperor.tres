@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TarotCard" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/TarotCard.cs" id="1_x2fvy"]
+
+[resource]
+script = ExtResource("1_x2fvy")
+CardName = "The Emperor"
+Description = "Represents authority, structure, and control. The power to command and establish order."
+Type = 0
+Suit = 0
+Value = 0
+MajorArcanaNumber = "IV"
+PrimaryEffect = "+20% damage to elite enemies"
+SecondaryEffect = "+15% damage resistance"
+PrimaryEffectValue = 0.2
+SecondaryEffectValue = 0.15
+IsSingleUse = false
+IsPassive = true
+IconPath = "res://Assets/Tarot/emperor.png"
+CardColor = Color(0.8, 0.2, 0.2, 1)
+HealthModifier = 0.0
+DamageModifier = 0.0
+SpeedModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+ActiveAbility = ""
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnRoomClearEffect = false
+ComboEffect = ""
+ComboThreshold = 3

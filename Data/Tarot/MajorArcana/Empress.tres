@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TarotCard" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/TarotCard.cs" id="1_k4tsh"]
+
+[resource]
+script = ExtResource("1_k4tsh")
+CardName = "The Empress"
+Description = "Represents fertility, nurturing, and abundance. The creative power that sustains and nurtures life."
+Type = 0
+Suit = 0
+Value = 0
+MajorArcanaNumber = "III"
+PrimaryEffect = "+25% healing received"
+SecondaryEffect = "+2 health regeneration per second"
+PrimaryEffectValue = 0.25
+SecondaryEffectValue = 2.0
+IsSingleUse = false
+IsPassive = true
+IconPath = "res://Assets/Tarot/empress.png"
+CardColor = Color(0.2, 0.7, 0.3, 1)
+HealthModifier = 0.0
+DamageModifier = 0.0
+SpeedModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+ActiveAbility = ""
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnRoomClearEffect = false
+ComboEffect = ""
+ComboThreshold = 3

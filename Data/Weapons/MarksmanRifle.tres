@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/Weapon.cs" id="1_eo8vl"]
+
+[resource]
+script = ExtResource("1_eo8vl")
+WeaponName = "Marksman Rifle"
+Description = "A precise long-range rifle favored by the Occult Detective. Rewards accuracy with increased damage."
+Type = 1
+Rarity = 1
+Epithet = ""
+Damage = 25.0
+FireRate = 0.5
+ReloadTime = 1.5
+MagazineSize = 8
+Range = 25.0
+Spread = 0.02
+ProjectileSpeed = 30.0
+ProjectilesPerShot = 1
+IsAutomatic = false
+WeaponModel = "res://Assets/Weapons/marksman_rifle.png"
+ProjectileScene = "res://Scenes/Items/Projectile.tscn"
+MuzzleFlashScene = "res://Scenes/Effects/MuzzleFlash.tscn"
+ShootSound = "res://Assets/Audio/rifle_shot.wav"
+ReloadSound = "res://Assets/Audio/rifle_reload.wav"
+WeaponColor = Color(0.2, 0.4, 0.7, 1)
+Prefixes = []
+Suffixes = []
+DamageModifier = 0.0
+FireRateModifier = 0.0
+ReloadTimeModifier = 0.0
+CriticalChance = 0.15
+CriticalMultiplier = 2.0
+HasElementalEffect = false
+ElementalType = ""
+ElementalDamage = 0.0
+ElementalChance = 0.0
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnReloadEffect = false
+HasSpecialAbility = true
+SpecialAbilityDescription = "Steady Aim: Standing still for 1s increases damage by 25% for the next shot."

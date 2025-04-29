@@ -1,0 +1,506 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7j7pifeg4vbw"]
+
+[ext_resource type="Script" path="res://Scripts/UI/MainMenu.gd" id="1_ohxw1"]
+[ext_resource type="FontFile" uid="uid://sdfghu84g894" path="res://Assets/Fonts/ZodiacFont.ttf" id="2_f7wy3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y45j"]
+bg_color = Color(0.121569, 0.121569, 0.14902, 0.901961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.301961, 0.301961, 0.372549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dxyp"]
+bg_color = Color(0.0784314, 0.113725, 0.156863, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.270588, 0.309804, 0.388235, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udfrt"]
+bg_color = Color(0.184314, 0.219608, 0.270588, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.372549, 0.411765, 0.490196, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp20f"]
+bg_color = Color(0.105882, 0.141176, 0.184314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.270588, 0.309804, 0.388235, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5pox"]
+bg_color = Color(0.121569, 0.121569, 0.14902, 0.901961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.301961, 0.301961, 0.372549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vqfm7"]
+bg_color = Color(0.121569, 0.121569, 0.14902, 0.901961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.301961, 0.301961, 0.372549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ucaj"]
+bg_color = Color(0.0627451, 0.0627451, 0.101961, 0.960784)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.2, 0.27451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_size = 5
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ohxw1")
+
+[node name="Background" type="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0313726, 0.0392157, 0.0784314, 1)
+
+[node name="TitleTexture" type="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = 20.0
+offset_right = 350.0
+offset_bottom = 120.0
+grow_horizontal = 2
+
+[node name="TitleLabel" type="Label"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = 40.0
+offset_right = 350.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.937255, 0.843137, 0.678431, 1)
+theme_override_colors/font_shadow_color = Color(0.196078, 0.121569, 0.227451, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_f7wy3")
+theme_override_font_sizes/font_size = 48
+text = "CODEX OF THE BROKEN ZODIAC"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -350.0
+offset_top = 110.0
+offset_right = 350.0
+offset_bottom = 145.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.631373, 0.592157, 0.709804, 1)
+theme_override_font_sizes/font_size = 16
+text = "A Lovecraftian Isometric Twin-Stick Roguelike"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8y45j")
+
+[node name="MarginContainer" type="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PlayerNameContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.756863, 0.745098, 0.858824, 1)
+theme_override_font_sizes/font_size = 16
+text = "Player Name"
+
+[node name="PlayerNameInput" type="LineEdit"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5dxyp")
+placeholder_text = "Enter your name..."
+max_length = 20
+
+[node name="ClassSelectionContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.756863, 0.745098, 0.858824, 1)
+theme_override_font_sizes/font_size = 16
+text = "Choose Your Psyche Class"
+
+[node name="ClassOptionButton" type="OptionButton"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5dxyp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_udfrt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cp20f")
+alignment = 1
+item_count = 6
+selected = 0
+popup/item_0/text = "Occult Detective"
+popup/item_0/id = 0
+popup/item_1/text = "Apostate Medium"
+popup/item_1/id = 1
+popup/item_2/text = "Irredeemable Debtor"
+popup/item_2/id = 2
+popup/item_3/text = "Reclusive Archivist"
+popup/item_3/id = 3
+popup/item_4/text = "Seditious Orator"
+popup/item_4/id = 4
+popup/item_5/text = "Phantom Constable"
+popup/item_5/id = 5
+
+[node name="ClassDescriptionLabel" type="Label"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.419608, 0.603922, 0.807843, 1)
+theme_override_font_sizes/font_size = 14
+text = "Volition-driven detective with marksman rifle, rally aura, and interrupt shot."
+autowrap_mode = 3
+
+[node name="ButtonsContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HostButton" type="Button"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 18
+text = "Start New Game"
+
+[node name="JoinButton" type="Button"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 18
+text = "Join Game"
+
+[node name="SettingsButton" type="Button"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 18
+text = "Settings"
+
+[node name="QuitButton" type="Button"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 18
+text = "Quit"
+
+[node name="JoinGameDialog" type="PanelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -125.0
+offset_right = 200.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n5pox")
+
+[node name="VBoxContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Join Game"
+horizontal_alignment = 1
+
+[node name="IPContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label"]
+layout_mode = 2
+text = "IP Address"
+
+[node name="IPAddressInput" type="LineEdit"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5dxyp")
+text = "127.0.0.1"
+placeholder_text = "Enter IP address..."
+
+[node name="PortContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label"]
+layout_mode = 2
+text = "Port"
+
+[node name="PortInput" type="LineEdit"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5dxyp")
+text = "31400"
+placeholder_text = "Enter port..."
+
+[node name="ButtonContainer" type="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ConnectButton" type="Button"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Connect"
+
+[node name="CancelButton" type="Button"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Cancel"
+
+[node name="SettingsDialog" type="PanelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vqfm7")
+
+[node name="VBoxContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="AudioSettings" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="MasterVolumeSlider" type="HSlider"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="MusicSettings" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVolumeSlider" type="HSlider"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.7
+
+[node name="SFXSettings" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFXVolumeSlider" type="HSlider"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="ButtonContainer" type="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SaveButton" type="Button"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Save"
+
+[node name="CancelButton" type="Button"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "Cancel"
+
+[node name="ErrorDialog" type="PanelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -75.0
+offset_right = 200.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vqfm7")
+
+[node name="VBoxContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="TitleLabel" type="Label"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92549, 0.337255, 0.313726, 1)
+theme_override_font_sizes/font_size = 24
+text = "Error"
+horizontal_alignment = 1
+
+[node name="ErrorLabel" type="Label"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Connection failed. Please try again."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="OkButton" type="Button"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 18
+text = "   OK   "
+
+[node name="LoadingPanel" type="PanelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ucaj")
+
+[node name="Label" type="Label"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "Loading..."
+horizontal_alignment = 1
+
+[node name="VersionLabel" type="Label"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -26.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.501961, 0.501961, 0.564706, 1)
+theme_override_font_sizes/font_size = 12
+text = "v0.1.0"
+horizontal_alignment = 2
+
+[node name="ButtonSound" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+volume_db = -12.0

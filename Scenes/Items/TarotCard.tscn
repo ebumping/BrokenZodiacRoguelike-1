@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq6uqe21uqmob"]
+
+[ext_resource type="Script" path="res://Scripts/Items/TarotCard.gd" id="1_3ukf4"]
+[ext_resource type="Shader" path="res://Assets/Shaders/Glow.gdshader" id="1_7f4x8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0svmq"]
+shader = ExtResource("1_7f4x8")
+shader_parameter/glow_color = Color(0.8, 0.6, 0.9, 1)
+shader_parameter/glow_intensity = 0.3
+shader_parameter/glow_size = 3.0
+shader_parameter/glow_threshold = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbkn4"]
+size = Vector2(24, 36)
+
+[sub_resource type="Animation" id="Animation_kknw1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_i4hs3"]
+resource_name = "hover"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3), Vector2(0, 0), Vector2(0, -3), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0523599, 0.0, -0.0523599, 0.0]
+}
+
+[node name="TarotCard" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+input_pickable = false
+script = ExtResource("1_3ukf4")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0svmq")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vbkn4")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = -24.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "Tarot Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "hover"
+libraries = {
+"": SubResource("Animation_i4hs3")
+}

@@ -1,0 +1,147 @@
+[gd_scene load_steps=11 format=3 uid="uid://coqe3tynwmshm"]
+
+[ext_resource type="PackedScene" uid="uid://cdhvgylhkuoj8" path="res://Scenes/Rooms/RoomTemplate.tscn" id="1_8d1i7"]
+[ext_resource type="Script" path="res://Scripts/Rooms/BossRoomController.gd" id="2_j1e4n"]
+[ext_resource type="Texture2D" uid="uid://c7vffkq10s0jq" path="res://Assets/Sprites/tileset_floor.png" id="3_0b8y4"]
+[ext_resource type="Shader" path="res://Assets/Shaders/Glow.gdshader" id="4_04luy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0u4ww"]
+radius = 40.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnm8w"]
+shader = ExtResource("4_04luy")
+shader_parameter/glow_color = Color(0.658824, 0.207843, 0.207843, 1)
+shader_parameter/glow_intensity = 0.2
+shader_parameter/glow_size = 2.0
+shader_parameter/glow_threshold = 0.5
+
+[sub_resource type="Animation" id="Animation_imbdd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RitualCircle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RitualCircle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961)]
+}
+
+[sub_resource type="Animation" id="Animation_ym1ed"]
+resource_name = "boss_ritual_active"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RitualCircle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RitualCircle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 0.513726, 0.513726, 0.752941), Color(1, 1, 1, 0.501961), Color(1, 0.513726, 0.513726, 0.752941), Color(1, 1, 1, 0.501961)]
+}
+
+[sub_resource type="Animation" id="Animation_2cpdt"]
+resource_name = "boss_ritual_idle"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RitualCircle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RitualCircle:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0.501961), Color(1, 1, 1, 0.25098), Color(1, 1, 1, 0.501961)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hppnd"]
+_data = {
+"RESET": SubResource("Animation_imbdd"),
+"boss_ritual_active": SubResource("Animation_ym1ed"),
+"boss_ritual_idle": SubResource("Animation_2cpdt")
+}
+
+[node name="BossRoom" instance=ExtResource("1_8d1i7")]
+script = ExtResource("2_j1e4n")
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(-327690, 0, 0, -262154, 0, 0, -196618, 0, 0, -131082, 0, 0, -65546, 0, 0, -10, 0, 0, 65526, 0, 0, 131062, 0, 0, 196598, 0, 0, 262134, 0, 0, 327670, 0, 0, -327689, 0, 0, -262153, 0, 0, -196617, 0, 0, -131081, 0, 0, -65545, 0, 0, -9, 0, 0, 65527, 0, 0, 131063, 0, 0, 196599, 0, 0, 262135, 0, 0, 327671, 0, 0, -327688, 0, 0, -262152, 0, 0, -196616, 0, 0, -131080, 0, 0, -65544, 0, 0, -8, 0, 0, 65528, 0, 0, 131064, 0, 0, 196600, 0, 0, 262136, 0, 0, 327672, 0, 0, -327687, 0, 0, -262151, 0, 0, -196615, 0, 0, -131079, 0, 0, -65543, 0, 0, -7, 0, 0, 65529, 0, 0, 131065, 0, 0, 196601, 0, 0, 262137, 0, 0, 327673, 0, 0, -327686, 0, 0, -262150, 0, 0, -196614, 0, 0, -131078, 0, 0, -65542, 0, 0, -6, 0, 0, 65530, 0, 0, 131066, 0, 0, 196602, 0, 0, 262138, 0, 0, 327674, 0, 0, -327685, 0, 0, -262149, 0, 0, -196613, 0, 0, -131077, 0, 0, -65541, 0, 0, -5, 0, 0, 65531, 2, 0, 131067, 2, 0, 196603, 2, 0, 262139, 0, 0, 327675, 0, 0, -327684, 0, 0, -262148, 0, 0, -196612, 0, 0, -131076, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 2, 0, 131068, 2, 0, 196604, 2, 0, 262140, 0, 0, 327676, 0, 0, -327683, 0, 0, -262147, 0, 0, -196611, 0, 0, -131075, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 2, 0, 131069, 2, 0, 196605, 2, 0, 262141, 0, 0, 327677, 0, 0, -327682, 0, 0, -262146, 0, 0, -196610, 0, 0, -131074, 0, 0, -65538, 0, 0, -2, 0, 0, 65534, 2, 0, 131070, 2, 0, 196606, 2, 0, 262142, 0, 0, 327678, 0, 0, -327681, 0, 0, -262145, 0, 0, -196609, 0, 0, -131073, 0, 0, -65537, 0, 0, -1, 0, 0, 65535, 2, 0, 131071, 2, 0, 196607, 2, 0, 262143, 0, 0, 327679, 0, 0, -393216, 0, 0, -327680, 0, 0, -262144, 0, 0, -196608, 0, 0, -131072, 0, 0, -65536, 0, 0, 0, 2, 0, 65536, 2, 0, 131072, 2, 0, 196608, 0, 0, 262144, 0, 0, -393215, 0, 0, -327679, 0, 0, -262143, 0, 0, -196607, 0, 0, -131071, 0, 0, -65535, 0, 0, 1, 2, 0, 65537, 2, 0, 131073, 2, 0, 196609, 0, 0, 262145, 0, 0, -393214, 0, 0, -327678, 0, 0, -262142, 0, 0, -196606, 0, 0, -131070, 0, 0, -65534, 0, 0, 2, 2, 0, 65538, 2, 0, 131074, 2, 0, 196610, 0, 0, 262146, 0, 0, -393213, 0, 0, -327677, 0, 0, -262141, 0, 0, -196605, 0, 0, -131069, 0, 0, -65533, 0, 0, 3, 0, 0, 65539, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, -393212, 0, 0, -327676, 0, 0, -262140, 0, 0, -196604, 0, 0, -131068, 0, 0, -65532, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, -393211, 0, 0, -327675, 0, 0, -262139, 0, 0, -196603, 0, 0, -131067, 0, 0, -65531, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 262149, 0, 0, -393210, 0, 0, -327674, 0, 0, -262138, 0, 0, -196602, 0, 0, -131066, 0, 0, -65530, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0)
+layer_1/tile_data = PackedInt32Array(-393222, 1, 0, -393221, 1, 0, -393220, 1, 0, -393219, 1, 0, -393218, 1, 0, -393217, 1, 0, -458752, 1, 0, -458751, 1, 0, -458750, 1, 0, -458749, 1, 0, -458748, 1, 0, -458747, 1, 0, -458746, 1, 0, 393206, 1, 0, 393207, 1, 0, 393208, 1, 0, 393209, 1, 0, 393210, 1, 0, 393211, 1, 0, 393212, 1, 0, 393213, 1, 0, 393214, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, -393223, 1, 0, -327687, 1, 0, -262151, 1, 0, -196615, 1, 0, -131079, 1, 0, -65543, 1, 0, -7, 1, 0, 65529, 1, 0, 131065, 1, 0, 196601, 1, 0, 262137, 1, 0, -458745, 1, 0, -393209, 1, 0, -327673, 1, 0, -262137, 1, 0, -196601, 1, 0, -131065, 1, 0, -65529, 1, 0, 7, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 0)
+
+[node name="CanvasModulate" parent="." index="2"]
+color = Color(0.752941, 0.65098, 0.701961, 1)
+
+[node name="BossArea" type="Area2D" parent="." index="9"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArea" index="0"]
+shape = SubResource("CircleShape2D_0u4ww")
+
+[node name="RitualCircle" type="TextureRect" parent="." index="10"]
+modulate = Color(1, 1, 1, 0.501961)
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("3_0b8y4")
+
+[node name="BossSpawnPoint" type="Marker2D" parent="." index="11"]
+material = SubResource("ShaderMaterial_qnm8w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+autoplay = "boss_ritual_idle"
+libraries = {
+"": SubResource("AnimationLibrary_hppnd")
+}
+
+[node name="BossSound" type="AudioStreamPlayer2D" parent="." index="13"]
+volume_db = -5.0
+max_distance = 500.0

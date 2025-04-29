@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TarotCard" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/TarotCard.cs" id="1_rl5nw"]
+
+[resource]
+script = ExtResource("1_rl5nw")
+CardName = "Death"
+Description = "Represents endings, transformation, and rebirth. Not a literal death, but a profound change."
+Type = 0
+Suit = 0
+Value = 0
+MajorArcanaNumber = "XIII"
+PrimaryEffect = "Clear the current room of all enemies"
+SecondaryEffect = "All future item drops are rerolled"
+PrimaryEffectValue = 1.0
+SecondaryEffectValue = 1.0
+IsSingleUse = true
+IsPassive = false
+IconPath = "res://Assets/Tarot/death.png"
+CardColor = Color(0.2, 0.2, 0.3, 1)
+HealthModifier = 0.0
+DamageModifier = 0.0
+SpeedModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+ActiveAbility = "Reaper's Touch: Instantly defeat all enemies in the current room. All future loot drops are rerolled for the remainder of the run."
+HasOnKillEffect = false
+HasOnHitEffect = false
+HasOnRoomClearEffect = false
+ComboEffect = ""
+ComboThreshold = 3

@@ -1,0 +1,176 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdhvgylhkuoj8"]
+
+[ext_resource type="Texture2D" uid="uid://c7vffkq10s0jq" path="res://Assets/Sprites/tileset_floor.png" id="1_0lx81"]
+[ext_resource type="Shader" path="res://Assets/Shaders/IsometricTilemap.gdshader" id="1_jrsaj"]
+[ext_resource type="Script" path="res://Scripts/Rooms/RoomController.gd" id="1_tpw0n"]
+[ext_resource type="Texture2D" uid="uid://ceejblg58y7lm" path="res://Assets/Sprites/tileset_walls.png" id="2_8pcki"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bm8oe"]
+shader = ExtResource("1_jrsaj")
+shader_parameter/tile_scale = 0.5
+shader_parameter/shadow_intensity = 0.5
+shader_parameter/shadow_direction = Vector2(0.5, 0.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jtvlp"]
+texture = ExtResource("1_0lx81")
+texture_region_size = Vector2i(64, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uiqpx"]
+texture = ExtResource("2_8pcki")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_aexw5"]
+tile_shape = 1
+tile_size = Vector2i(64, 32)
+sources/0 = SubResource("TileSetAtlasSource_jtvlp")
+sources/1 = SubResource("TileSetAtlasSource_uiqpx")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_e2dng"]
+vertices = PackedVector2Array(-384, -192, 384, -192, 384, 192, -384, 192)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-384, -192, 384, -192, 384, 192, -384, 192)])
+
+[node name="RoomTemplate" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_tpw0n")
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_bm8oe")
+tile_set = SubResource("TileSet_aexw5")
+format = 2
+layer_0/name = "Floor"
+layer_0/tile_data = PackedInt32Array(-327690, 0, 0, -262154, 0, 0, -196618, 0, 0, -131082, 0, 0, -65546, 0, 0, -10, 0, 0, 65526, 0, 0, 131062, 0, 0, 196598, 0, 0, 262134, 0, 0, 327670, 0, 0, -327689, 0, 0, -262153, 0, 0, -196617, 0, 0, -131081, 0, 0, -65545, 0, 0, -9, 0, 0, 65527, 0, 0, 131063, 0, 0, 196599, 0, 0, 262135, 0, 0, 327671, 0, 0, -327688, 0, 0, -262152, 0, 0, -196616, 0, 0, -131080, 0, 0, -65544, 0, 0, -8, 0, 0, 65528, 0, 0, 131064, 0, 0, 196600, 0, 0, 262136, 0, 0, 327672, 0, 0, -327687, 0, 0, -262151, 0, 0, -196615, 0, 0, -131079, 0, 0, -65543, 0, 0, -7, 0, 0, 65529, 0, 0, 131065, 0, 0, 196601, 0, 0, 262137, 0, 0, 327673, 0, 0, -327686, 0, 0, -262150, 0, 0, -196614, 0, 0, -131078, 0, 0, -65542, 0, 0, -6, 0, 0, 65530, 0, 0, 131066, 0, 0, 196602, 0, 0, 262138, 0, 0, 327674, 0, 0, -327685, 0, 0, -262149, 0, 0, -196613, 0, 0, -131077, 0, 0, -65541, 0, 0, -5, 0, 0, 65531, 0, 0, 131067, 0, 0, 196603, 0, 0, 262139, 0, 0, 327675, 0, 0, -327684, 0, 0, -262148, 0, 0, -196612, 0, 0, -131076, 0, 0, -65540, 0, 0, -4, 0, 0, 65532, 0, 0, 131068, 0, 0, 196604, 0, 0, 262140, 0, 0, 327676, 0, 0, -327683, 0, 0, -262147, 0, 0, -196611, 0, 0, -131075, 0, 0, -65539, 0, 0, -3, 0, 0, 65533, 0, 0, 131069, 0, 0, 196605, 0, 0, 262141, 0, 0, 327677, 0, 0, -327682, 0, 0, -262146, 0, 0, -196610, 0, 0, -131074, 0, 0, -65538, 0, 0, -2, 0, 0, 65534, 0, 0, 131070, 0, 0, 196606, 0, 0, 262142, 0, 0, 327678, 0, 0, -327681, 0, 0, -262145, 0, 0, -196609, 0, 0, -131073, 0, 0, -65537, 0, 0, -1, 0, 0, 65535, 0, 0, 131071, 0, 0, 196607, 0, 0, 262143, 0, 0, 327679, 0, 0, -393216, 0, 0, -327680, 0, 0, -262144, 0, 0, -196608, 0, 0, -131072, 0, 0, -65536, 0, 0, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, -393215, 0, 0, -327679, 0, 0, -262143, 0, 0, -196607, 0, 0, -131071, 0, 0, -65535, 0, 0, 1, 0, 0, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, -393214, 0, 0, -327678, 0, 0, -262142, 0, 0, -196606, 0, 0, -131070, 0, 0, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 262146, 0, 0, -393213, 0, 0, -327677, 0, 0, -262141, 0, 0, -196605, 0, 0, -131069, 0, 0, -65533, 0, 0, 3, 0, 0, 65539, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, -393212, 0, 0, -327676, 0, 0, -262140, 0, 0, -196604, 0, 0, -131068, 0, 0, -65532, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, -393211, 0, 0, -327675, 0, 0, -262139, 0, 0, -196603, 0, 0, -131067, 0, 0, -65531, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 262149, 0, 0, -393210, 0, 0, -327674, 0, 0, -262138, 0, 0, -196602, 0, 0, -131066, 0, 0, -65530, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0)
+layer_1/name = "Walls"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(-393222, 1, 0, -393221, 1, 0, -393220, 1, 0, -393219, 1, 0, -393218, 1, 0, -393217, 1, 0, -458752, 1, 0, -458751, 1, 0, -458750, 1, 0, -458749, 1, 0, -458748, 1, 0, -458747, 1, 0, -458746, 1, 0, 393206, 1, 0, 393207, 1, 0, 393208, 1, 0, 393209, 1, 0, 393210, 1, 0, 393211, 1, 0, 393212, 1, 0, 393213, 1, 0, 393214, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, -393223, 1, 0, -327687, 1, 0, -262151, 1, 0, -196615, 1, 0, -131079, 1, 0, -65543, 1, 0, -7, 1, 0, 65529, 1, 0, 131065, 1, 0, 196601, 1, 0, 262137, 1, 0, -458745, 1, 0, -393209, 1, 0, -327673, 1, 0, -262137, 1, 0, -196601, 1, 0, -131065, 1, 0, -65529, 1, 0, 7, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 0)
+layer_2/name = "Objects"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = true
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0.392157, 0.392157, 0.470588, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.662745, 0.662745, 0.709804, 1)
+
+[node name="RoomBoundary" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RoomBoundary"]
+polygon = PackedVector2Array(-384, -192, 384, -192, 384, 192, -384, 192, -384, -192)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_e2dng")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="NorthDoor" type="Area2D" parent="Doors"]
+position = Vector2(0, -192)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/NorthDoor"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Doors/NorthDoor"]
+
+[node name="EastDoor" type="Area2D" parent="Doors"]
+position = Vector2(384, 0)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/EastDoor"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Doors/EastDoor"]
+
+[node name="SouthDoor" type="Area2D" parent="Doors"]
+position = Vector2(0, 192)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/SouthDoor"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Doors/SouthDoor"]
+
+[node name="WestDoor" type="Area2D" parent="Doors"]
+position = Vector2(-384, 0)
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Doors/WestDoor"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Doors/WestDoor"]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="PlayerSpawn" type="Marker2D" parent="SpawnPoints"]
+
+[node name="EnemySpawn1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-100, -50)
+
+[node name="EnemySpawn2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(100, -50)
+
+[node name="EnemySpawn3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-100, 50)
+
+[node name="EnemySpawn4" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(100, 50)
+
+[node name="EnemySpawn5" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(0, 100)
+
+[node name="LootSpawn1" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-150, 0)
+
+[node name="LootSpawn2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(150, 0)
+
+[node name="LootSpawn3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(0, -120)
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="LootContainer" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.752941, 0.745098, 0.827451, 1)
+energy = 0.5
+blend_mode = 1
+
+[node name="PointLights" type="Node2D" parent="."]
+
+[node name="AmbientSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = -10.0
+autoplay = true
+max_distance = 500.0

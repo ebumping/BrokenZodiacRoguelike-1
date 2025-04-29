@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="PlayerClass" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/PlayerClass.cs" id="1_7vfjy"]
+
+[resource]
+script = ExtResource("1_7vfjy")
+ClassName = "OccultDetective"
+Description = "A grizzled veteran with an uncanny ability to see the truth behind the veil. Relies on precision, focus, and leadership."
+PsycheTheme = "Volition"
+BaseHealth = 120.0
+BaseMana = 80.0
+MoveSpeed = 200.0
+DefaultWeapon = "MarksmanRifle"
+Spells = ["res://Data/Spells/RallyAura.tres", "res://Data/Spells/InterruptShot.tres"]
+CoreAbility = "Rally Aura: Boost ally damage by 15% for 8s in a 5m radius."
+PassiveAbility = "Steady Hand: First shot after 3s without firing has +30% critical chance."
+SpecialAbility = "Interrupt Shot: Stuns enemy and interrupts special attacks. 10s cooldown."
+SpritePath = "res://Assets/Characters/detective.png"
+IconPath = "res://Assets/UI/detective_icon.png"
+ClassColor = Color(0.2, 0.4, 0.7, 1)
+TalentNodes = ["Improved Rally: +10% effect, +3s duration", "Quick Focus: -2s for Steady Hand passive", "Mass Interrupt: Affects all enemies in 3m radius"]

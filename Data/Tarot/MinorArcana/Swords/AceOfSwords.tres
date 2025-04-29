@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TarotCard" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/TarotCard.cs" id="1_cjp8u"]
+
+[resource]
+script = ExtResource("1_cjp8u")
+CardName = "Ace of Swords"
+Description = "Represents mental clarity, truth, and breakthrough. The cutting edge of intellect."
+Type = 1
+Suit = 3
+Value = 1
+MajorArcanaNumber = ""
+PrimaryEffect = "Attacks have 15% chance to cause bleed"
+SecondaryEffect = "Bleeding enemies take 3 damage per second for 5s"
+PrimaryEffectValue = 0.15
+SecondaryEffectValue = 3.0
+IsSingleUse = false
+IsPassive = true
+IconPath = "res://Assets/Tarot/ace_swords.png"
+CardColor = Color(0.7, 0.7, 0.7, 1)
+HealthModifier = 0.0
+DamageModifier = 0.0
+SpeedModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.1
+ActiveAbility = ""
+HasOnKillEffect = false
+HasOnHitEffect = true
+HasOnRoomClearEffect = false
+ComboEffect = "Three Swords: Bleed chance increased to 30%, bleeding enemies take 20% more damage from all sources"
+ComboThreshold = 3

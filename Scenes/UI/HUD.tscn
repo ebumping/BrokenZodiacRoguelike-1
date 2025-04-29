@@ -1,0 +1,578 @@
+[gd_scene load_steps=13 format=3 uid="uid://dg4vptflw0o1q"]
+
+[ext_resource type="Script" path="res://Scripts/UI/HUD.gd" id="1_63qvw"]
+[ext_resource type="FontFile" uid="uid://sdfghu84g894" path="res://Assets/Fonts/ZodiacFont.ttf" id="2_3f56t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jtkp"]
+bg_color = Color(0.0980392, 0.0980392, 0.152941, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.2, 0.27451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2jd52"]
+bg_color = Color(0.0980392, 0.0980392, 0.152941, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.2, 0.27451, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wq3t"]
+bg_color = Color(0.054902, 0.054902, 0.0941177, 0.627451)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ug2n"]
+bg_color = Color(0.0705882, 0.254902, 0.301961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.137255, 0.396078, 0.47451, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njnhf"]
+bg_color = Color(0.0705882, 0.0705882, 0.113725, 0.627451)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1tvlg"]
+bg_color = Color(0.8, 0.027451, 0.113725, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.968627, 0.0313726, 0.133333, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbbm1"]
+bg_color = Color(0.0705882, 0.0705882, 0.113725, 0.627451)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1dff"]
+bg_color = Color(0.301961, 0.101961, 0.470588, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.470588, 0.168627, 0.729412, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrdkq"]
+bg_color = Color(0.0705882, 0.0705882, 0.113725, 0.784314)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.27451, 0.0705882, 0.0705882, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03smd"]
+bg_color = Color(0.65098, 0.0705882, 0.0705882, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.878431, 0.105882, 0.105882, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_63qvw")
+
+[node name="TopHUD" type="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="MotesCounter" type="Label"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 36.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.501961, 0.756863, 0.909804, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_3f56t")
+theme_override_font_sizes/font_size = 18
+text = "Motes: 0"
+horizontal_alignment = 2
+
+[node name="LevelDisplay" type="Label"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.839216, 0.694118, 0.482353, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_3f56t")
+theme_override_font_sizes/font_size = 18
+text = "Level: 1"
+horizontal_alignment = 1
+
+[node name="Minimap" type="PanelContainer"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_top = 40.0
+offset_right = -10.0
+offset_bottom = 210.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6jtkp")
+
+[node name="MinimapGrid" type="Control"]
+layout_mode = 2
+
+[node name="PauseButton" type="Button"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 36.0
+grow_horizontal = 0
+text = "II"
+
+[node name="BottomHUD" type="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="StatsContainer" type="HBoxContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -40.0
+offset_right = 200.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="HealthBar" type="ProgressBar"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_8wq3t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5ug2n")
+max_value = 100.0
+value = 100.0
+
+[node name="Label" type="Label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -12.0
+offset_right = 28.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ManaBar" type="ProgressBar"]
+custom_minimum_size = Vector2(180, 30)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_njnhf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_p1dff")
+max_value = 100.0
+value = 100.0
+
+[node name="Label" type="Label"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -12.0
+offset_right = 28.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponDisplay" type="PanelContainer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -70.0
+offset_right = 250.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6jtkp")
+
+[node name="HBoxContainer" type="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WeaponIcon" type="TextureRect"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="WeaponName" type="Label"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.839216, 0.694118, 0.482353, 1)
+theme_override_font_sizes/font_size = 16
+text = "Marksman Rifle"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SpellDisplay" type="PanelContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -70.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2jd52")
+
+[node name="HBoxContainer" type="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SpellIcon" type="TextureRect"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpellName" type="Label"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.619608, 0.545098, 0.937255, 1)
+theme_override_font_sizes/font_size = 16
+text = "Rally Aura"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RightHUD" type="Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -210.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TarotHand" type="VBoxContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -200.0
+offset_right = -10.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BossHealthBar" type="PanelContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 40.0
+offset_right = 250.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jrdkq")
+
+[node name="VBoxContainer" type="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="BossName" type="Label"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.643137, 0.643137, 1)
+theme_override_font_sizes/font_size = 16
+text = "Elder Horror"
+horizontal_alignment = 1
+
+[node name="HealthBar" type="ProgressBar"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_njnhf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_03smd")
+max_value = 100.0
+value = 60.0
+
+[node name="MobileControls" type="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftStick" type="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -220.0
+offset_right = 220.0
+offset_bottom = -100.0
+grow_vertical = 0
+
+[node name="Background" type="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.0705882, 0.113725, 0.501961)
+
+[node name="Thumb" type="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.203922, 0.396078, 0.643137, 0.803922)
+
+[node name="RightStick" type="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -220.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Background" type="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.0705882, 0.113725, 0.501961)
+
+[node name="Thumb" type="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.643137, 0.215686, 0.2, 0.803922)
+
+[node name="SpellButton" type="Button"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -320.0
+offset_right = -20.0
+offset_bottom = -250.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "SPELL"
+
+[node name="InteractButton" type="Button"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -320.0
+offset_right = 90.0
+offset_bottom = -250.0
+grow_vertical = 0
+text = "USE"
+
+[node name="Notifications" type="VBoxContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 50.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="DamageFlash" type="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.65098, 0, 0, 0)
+
+[node name="PickupNotification" type="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 220.0
+offset_right = 120.0
+offset_bottom = 260.0
+grow_horizontal = 2
+
+[node name="Background" type="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0705882, 0.0705882, 0.113725, 0.627451)
+
+[node name="Label" type="Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.501961, 0.756863, 0.909804, 1)
+theme_override_font_sizes/font_size = 18
+text = "Motes +10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0
+
+[node name="HealSound" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0

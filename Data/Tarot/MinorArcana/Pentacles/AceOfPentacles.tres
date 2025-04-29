@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TarotCard" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/TarotCard.cs" id="1_b4f5v"]
+
+[resource]
+script = ExtResource("1_b4f5v")
+CardName = "Ace of Pentacles"
+Description = "Represents material opportunity, prosperity, and abundance. The seed of material growth."
+Type = 1
+Suit = 4
+Value = 1
+MajorArcanaNumber = ""
+PrimaryEffect = "+20% more Motes of Insight from kills"
+SecondaryEffect = "10% chance to find additional loot in rooms"
+PrimaryEffectValue = 0.2
+SecondaryEffectValue = 0.1
+IsSingleUse = false
+IsPassive = true
+IconPath = "res://Assets/Tarot/ace_pentacles.png"
+CardColor = Color(0.2, 0.7, 0.3, 1)
+HealthModifier = 0.0
+DamageModifier = 0.0
+SpeedModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+ActiveAbility = ""
+HasOnKillEffect = true
+HasOnHitEffect = false
+HasOnRoomClearEffect = true
+ComboEffect = "Three Pentacles: Motes bonus increased to 40%, find better quality items"
+ComboThreshold = 3

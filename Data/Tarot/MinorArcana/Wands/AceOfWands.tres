@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TarotCard" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/TarotCard.cs" id="1_vgb0s"]
+
+[resource]
+script = ExtResource("1_vgb0s")
+CardName = "Ace of Wands"
+Description = "Represents creativity, inspiration, and new beginnings. The first spark of fire that ignites passion."
+Type = 1
+Suit = 1
+Value = 1
+MajorArcanaNumber = ""
+PrimaryEffect = "Attacks have 15% chance to ignite enemies"
+SecondaryEffect = "Ignited enemies take 5 fire damage per second for 3s"
+PrimaryEffectValue = 0.15
+SecondaryEffectValue = 5.0
+IsSingleUse = false
+IsPassive = true
+IconPath = "res://Assets/Tarot/ace_wands.png"
+CardColor = Color(0.9, 0.4, 0.1, 1)
+HealthModifier = 0.0
+DamageModifier = 0.0
+SpeedModifier = 0.0
+CooldownModifier = 0.0
+CriticalModifier = 0.0
+ActiveAbility = ""
+HasOnKillEffect = false
+HasOnHitEffect = true
+HasOnRoomClearEffect = false
+ComboEffect = "Three Wands: Ignite chance increased to 30%, fire damage increased to 8 per second"
+ComboThreshold = 3
