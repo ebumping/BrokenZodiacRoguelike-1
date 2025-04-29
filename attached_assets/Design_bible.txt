@@ -1,0 +1,90 @@
+B. Design bible (answer to the prompt)
+1. Core loop & controls
+Players clear procedurally-generated rooms, harvest Motes of Insight (currency), draft Tarot cards or gamble at occult kiosks, and descend until the group wipes or defeats the eldritch Avatar. PC uses WASD + mouse aim/left-click fire, right-click spell, scroll cycle spells—mirrored by dual on-screen sticks and gestures on mobile, matching best-practice twin-stick layouts 
+Reddit
+.
+
+2. Six psyche-driven classes
+
+Class	Disco-esque Psyche Theme	Core Ability Kit
+Occult Detective	Volition—grit & leadership 
+Steam Community
+Marksman rifle, rally aura, interrupt shot.
+Apostate Medium	Inland Empire—intuition	Shotgun, astral projection blink, spirit shield.
+Irredeemable Debtor	Authority—raw dominance	Gatling cannon, fear shout, berserk swap-HP-for-damage.
+Reclusive Archivist	Empathy—pattern insight	Beam staff, slow-time field, combo tracker.
+Seditious Orator	Suggestion—mind-bending	Dual pistols, charm grenade, critical trick-shot.
+Phantom Constable	Esprit de Corps—team synergy	Lawgiver revolver, badge-ward totem, revive tether.
+Each class has a unique sprite silhouette, color grade, and 3-node talent track that modifies spell behaviours.
+
+3. Zodiac Sigils (one per run)
+
+Sign	Combat Translation
+Aries – The Ram	+15 % sprint speed, first-hit of magazine deals 40 % extra dmg 
+Almanac.com
+Taurus – The Bull	+20 % max HP, knockback halved.
+Gemini – The Twins	Reload spawns an illusory doppel that mirrors shots for 4 s.
+Cancer – The Crab	Gain shell that soaks next 30 dmg every room.
+Leo – The Lion	Standing in light grants +25 % crit.
+Virgo – The Maiden	Consumables heal 50 % more but drop 20 % less.
+Libra – The Scales	Damage dealt/healed equalised between nearest ally every 5 s.
+Scorpio – The Scorpion	Bullets inflict stacking toxin (5 % DPS).
+Sagittarius – The Archer	+10 % projectile speed, roll cooldown -20 % 
+Almanac.com
+Capricorn – The Sea-Goat	Climbing over obstacles costs zero stamina.
+Aquarius – The Water-Bearer	Create slowing puddle after dodge.
+Pisces – The Fish	When under 30 % HP, attacks chain lightning to 2 foes.
+Sigils fundamentally tilt each class into new playstyles, ensuring hundreds of permutations per squad.
+
+4. Tarot Card loot table
+Major Arcana (22): each is a single-use, run-lasting boon mirroring traditional symbolism 
+Labyrinthos
+Reddit
+—e.g., XV The Devil grants +50 % damage but disables healing; XIII Death wipes room and rerolls all future drops once.
+Minor Arcana (56): stackable passive chips; suits map to elemental keywords (Wands = Fire DOT, Cups = Lifesteal, Swords = Bleed, Pentacles = Gold gain). Tarot items slot into a 5-card hand; at 3+ of a kind they unlock combo effects inspired by deck-builder Taromancy and Balatro 
+Steam Store
+Polygon
+.
+
+5. Weapons, rarity & affixes
+6 archetypes (pistols, rifles, shotguns, staves, launchers, melee relics).
+
+Rarity ladder: Common → Uncommon → Rare → Epic → Mythic. Higher tiers unlock affix sockets (1-3).
+
+Affixes pull from ~120 prefixes/suffixes balanced via tier-weighted drop-tables, a best practice in ARPGs 
+Reddit
+Reddit
+. Example—“Howling Staff of the Abyss” rolls +Toxic Cloud on crit & -10 % cast speed.
+
+Mythic weapons inherit an Epithet that rewires core behaviour (e.g., ricochet beams).
+
+6. Mutagens (boons with banes)
+32 serums inspired by Dead Cells mutations 
+Reddit
+. Examples:
+
+Hemorrhagic Lattice – +30 % lifesteal; incoming healing inflicts bleed over time.
+
+Eldritch Carapace – Immunity to poison; dash leaves static trail that also damages allies.
+
+7. Legendary armor sets (5)
+Pieces drop 0.3 % → 1 % per level cleared; two-piece and four-piece bonuses encourage hunting the full wardrobe. Set themes echo classic fantasy-Lovecraft mash-ups (e.g., “Plate of Cyclopean Architects” throws up non-Euclidean walls when you sprint) 
+PC Gamer
+Reddit
+.
+
+8. Economy & meta-progression
+Motes of Insight: earned from kills, flawless rooms, and gambling shrines; spend on Tarot or armory unlocks.
+
+Legacy Codex: permanent tree à la Hades—upgrade drop chances, open new Tarot pools, expand mutagen lab 
+Steam Community
+Steam Community
+.
+
+Run seeds store RNG for replayable daily challenges.
+
+9. Art & audio direction
+A muted, two-tone palette with accent glyphs echoes Bram Stoker-meets-Carcosa vibes, while looming parallax towers and cyclopean masonry borrow from id’s modern Doom reveal for a “fantasy-Lovecraftian” meld 
+PC Gamer
+Reddit
+. Layered drone-choirs, low-passed gunshots, and unpitched whispers round it out.
