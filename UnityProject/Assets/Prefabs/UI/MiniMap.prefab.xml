@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MiniMapPrefab>
+  <!-- This is a template for creating the MiniMap Prefab in Unity -->
+  <!-- The structure and components should be recreated in the Unity Editor -->
+  
+  <GameObject name="MiniMap" layer="UI">
+    <Components>
+      <Component type="RectTransform">
+        <Property name="anchorMin" value="0, 0" />
+        <Property name="anchorMax" value="1, 1" />
+        <Property name="sizeDelta" value="0, 0" />
+        <Property name="pivot" value="0.5, 0.5" />
+      </Component>
+      <Component type="MiniMapController" />
+      <Component type="MiniMapSetup" />
+      <Component type="NoiseTextureGenerator">
+        <Property name="textureSize" value="512" />
+        <Property name="octaves" value="5" />
+        <Property name="persistence" value="0.5" />
+        <Property name="lacunarity" value="2" />
+        <Property name="scale" value="10" />
+        <Property name="seed" value="42" />
+        <Property name="autoGenerate" value="true" />
+      </Component>
+    </Components>
+    
+    <Children>
+      <!-- Map Container -->
+      <GameObject name="MapContainer" layer="UI">
+        <Components>
+          <Component type="RectTransform">
+            <Property name="anchorMin" value="0.02, 0.75" />
+            <Property name="anchorMax" value="0.25, 0.98" />
+            <Property name="sizeDelta" value="0, 0" />
+            <Property name="pivot" value="0.5, 0.5" />
+          </Component>
+          <Component type="CanvasRenderer" />
+          <Component type="Image">
+            <Property name="color" value="0, 0, 0, 0.5" />
+            <Property name="material" value="null" />
+          </Component>
+        </Components>
+        
+        <Children>
+          <!-- Map Render Texture -->
+          <GameObject name="MapRenderTexture" layer="UI">
+            <Components>
+              <Component type="RectTransform">
+                <Property name="anchorMin" value="0.05, 0.05" />
+                <Property name="anchorMax" value="0.95, 0.95" />
+                <Property name="sizeDelta" value="0, 0" />
+                <Property name="pivot" value="0.5, 0.5" />
+              </Component>
+              <Component type="CanvasRenderer" />
+              <Component type="RawImage">
+                <Property name="color" value="1, 1, 1, 1" />
+                <Property name="material" value="DistortionMaterial" />
+              </Component>
+            </Components>
+          </GameObject>
+          
+          <!-- Room Icons Container -->
+          <GameObject name="RoomIcons" layer="UI">
+            <Components>
+              <Component type="RectTransform">
+                <Property name="anchorMin" value="0, 0" />
+                <Property name="anchorMax" value="1, 1" />
+                <Property name="sizeDelta" value="0, 0" />
+                <Property name="pivot" value="0.5, 0.5" />
+              </Component>
+            </Components>
+          </GameObject>
+          
+          <!-- Map Controls -->
+          <GameObject name="MapControls" layer="UI">
+            <Components>
+              <Component type="RectTransform">
+                <Property name="anchorMin" value="0, 0" />
+                <Property name="anchorMax" value="1, 1" />
+                <Property name="sizeDelta" value="0, 0" />
+                <Property name="pivot" value="0.5, 0.5" />
+              </Component>
+            </Components>
+            
+            <Children>
+              <!-- Expand Button -->
+              <GameObject name="ExpandButton" layer="UI">
+                <Components>
+                  <Component type="RectTransform">
+                    <Property name="anchorMin" value="1, 0" />
+                    <Property name="anchorMax" value="1, 0" />
+                    <Property name="sizeDelta" value="30, 30" />
+                    <Property name="pivot" value="1, 0" />
+                    <Property name="anchoredPosition" value="-5, 5" />
+                  </Component>
+                  <Component type="CanvasRenderer" />
+                  <Component type="Image">
+                    <Property name="color" value="1, 1, 1, 0.8" />
+                    <Property name="material" value="null" />
+                  </Component>
+                  <Component type="Button">
+                    <Property name="interactable" value="true" />
+                    <Property name="transition" value="ColorTint" />
+                  </Component>
+                </Components>
+              </GameObject>
+              
+              <!-- Collapse Button (hidden by default) -->
+              <GameObject name="CollapseButton" layer="UI" active="false">
+                <Components>
+                  <Component type="RectTransform">
+                    <Property name="anchorMin" value="1, 0" />
+                    <Property name="anchorMax" value="1, 0" />
+                    <Property name="sizeDelta" value="30, 30" />
+                    <Property name="pivot" value="1, 0" />
+                    <Property name="anchoredPosition" value="-5, 5" />
+                  </Component>
+                  <Component type="CanvasRenderer" />
+                  <Component type="Image">
+                    <Property name="color" value="1, 1, 1, 0.8" />
+                    <Property name="material" value="null" />
+                  </Component>
+                  <Component type="Button">
+                    <Property name="interactable" value="true" />
+                    <Property name="transition" value="ColorTint" />
+                  </Component>
+                </Components>
+              </GameObject>
+              
+              <!-- Zoom Controls (only visible in expanded mode) -->
+              <GameObject name="ZoomControls" layer="UI" active="false">
+                <Components>
+                  <Component type="RectTransform">
+                    <Property name="anchorMin" value="1, 0" />
+                    <Property name="anchorMax" value="1, 0" />
+                    <Property name="sizeDelta" value="70, 35" />
+                    <Property name="pivot" value="1, 0" />
+                    <Property name="anchoredPosition" value="-40, 5" />
+                  </Component>
+                  <Component type="CanvasRenderer" />
+                  <Component type="Image">
+                    <Property name="color" value="0, 0, 0, 0.5" />
+                    <Property name="material" value="null" />
+                  </Component>
+                </Components>
+                
+                <Children>
+                  <!-- Zoom In Button -->
+                  <GameObject name="ZoomInButton" layer="UI">
+                    <Components>
+                      <Component type="RectTransform">
+                        <Property name="anchorMin" value="0, 0" />
+                        <Property name="anchorMax" value="0, 0" />
+                        <Property name="sizeDelta" value="30, 30" />
+                        <Property name="pivot" value="0, 0" />
+                        <Property name="anchoredPosition" value="5, 2.5" />
+                      </Component>
+                      <Component type="CanvasRenderer" />
+                      <Component type="Image">
+                        <Property name="color" value="1, 1, 1, 0.8" />
+                        <Property name="material" value="null" />
+                      </Component>
+                      <Component type="Button">
+                        <Property name="interactable" value="true" />
+                        <Property name="transition" value="ColorTint" />
+                      </Component>
+                    </Components>
+                    
+                    <Children>
+                      <!-- Plus Icon -->
+                      <GameObject name="PlusIcon" layer="UI">
+                        <Components>
+                          <Component type="RectTransform">
+                            <Property name="anchorMin" value="0, 0" />
+                            <Property name="anchorMax" value="1, 1" />
+                            <Property name="sizeDelta" value="0, 0" />
+                            <Property name="pivot" value="0.5, 0.5" />
+                          </Component>
+                          <Component type="Text">
+                            <Property name="text" value="+" />
+                            <Property name="alignment" value="MiddleCenter" />
+                            <Property name="fontSize" value="20" />
+                            <Property name="color" value="1, 1, 1, 1" />
+                          </Component>
+                        </Components>
+                      </GameObject>
+                    </Children>
+                  </GameObject>
+                  
+                  <!-- Zoom Out Button -->
+                  <GameObject name="ZoomOutButton" layer="UI">
+                    <Components>
+                      <Component type="RectTransform">
+                        <Property name="anchorMin" value="1, 0" />
+                        <Property name="anchorMax" value="1, 0" />
+                        <Property name="sizeDelta" value="30, 30" />
+                        <Property name="pivot" value="1, 0" />
+                        <Property name="anchoredPosition" value="-5, 2.5" />
+                      </Component>
+                      <Component type="CanvasRenderer" />
+                      <Component type="Image">
+                        <Property name="color" value="1, 1, 1, 0.8" />
+                        <Property name="material" value="null" />
+                      </Component>
+                      <Component type="Button">
+                        <Property name="interactable" value="true" />
+                        <Property name="transition" value="ColorTint" />
+                      </Component>
+                    </Components>
+                    
+                    <Children>
+                      <!-- Minus Icon -->
+                      <GameObject name="MinusIcon" layer="UI">
+                        <Components>
+                          <Component type="RectTransform">
+                            <Property name="anchorMin" value="0, 0" />
+                            <Property name="anchorMax" value="1, 1" />
+                            <Property name="sizeDelta" value="0, 0" />
+                            <Property name="pivot" value="0.5, 0.5" />
+                          </Component>
+                          <Component type="Text">
+                            <Property name="text" value="-" />
+                            <Property name="alignment" value="MiddleCenter" />
+                            <Property name="fontSize" value="20" />
+                            <Property name="color" value="1, 1, 1, 1" />
+                          </Component>
+                        </Components>
+                      </GameObject>
+                    </Children>
+                  </GameObject>
+                </Children>
+              </GameObject>
+            </Children>
+          </GameObject>
+        </Children>
+      </GameObject>
+      
+      <!-- Minimap Camera -->
+      <GameObject name="MiniMapCamera" layer="MiniMap">
+        <Components>
+          <Component type="Transform">
+            <Property name="localPosition" value="0, 0, -10" />
+            <Property name="localRotation" value="0, 0, 0, 1" />
+            <Property name="localScale" value="1, 1, 1" />
+          </Component>
+          <Component type="Camera">
+            <Property name="orthographic" value="true" />
+            <Property name="orthographicSize" value="10" />
+            <Property name="clearFlags" value="SolidColor" />
+            <Property name="backgroundColor" value="0, 0, 0, 0" />
+            <Property name="cullingMask" value="MiniMap" />
+            <Property name="renderingPath" value="Forward" />
+            <Property name="targetTexture" value="New RenderTexture" />
+          </Component>
+        </Components>
+      </GameObject>
+    </Children>
+  </GameObject>
+  
+  <!-- Icon Prefab Templates -->
+  <IconPrefabs>
+    <!-- Room Icon Template -->
+    <GameObject name="RoomIconTemplate" layer="MiniMap">
+      <Components>
+        <Component type="RectTransform">
+          <Property name="anchorMin" value="0.5, 0.5" />
+          <Property name="anchorMax" value="0.5, 0.5" />
+          <Property name="sizeDelta" value="20, 20" />
+          <Property name="pivot" value="0.5, 0.5" />
+        </Component>
+        <Component type="CanvasRenderer" />
+        <Component type="Image">
+          <Property name="color" value="0.7, 0.7, 0.7, 1" />
+          <Property name="material" value="null" />
+        </Component>
+      </Components>
+    </GameObject>
+    
+    <!-- Player Icon Template -->
+    <GameObject name="PlayerIconTemplate" layer="MiniMap">
+      <Components>
+        <Component type="RectTransform">
+          <Property name="anchorMin" value="0.5, 0.5" />
+          <Property name="anchorMax" value="0.5, 0.5" />
+          <Property name="sizeDelta" value="10, 10" />
+          <Property name="pivot" value="0.5, 0.5" />
+        </Component>
+        <Component type="CanvasRenderer" />
+        <Component type="Image">
+          <Property name="color" value="0, 1, 0, 1" />
+          <Property name="material" value="null" />
+        </Component>
+      </Components>
+    </GameObject>
+    
+    <!-- Boss Icon Template -->
+    <GameObject name="BossIconTemplate" layer="MiniMap">
+      <Components>
+        <Component type="RectTransform">
+          <Property name="anchorMin" value="0.5, 0.5" />
+          <Property name="anchorMax" value="0.5, 0.5" />
+          <Property name="sizeDelta" value="15, 15" />
+          <Property name="pivot" value="0.5, 0.5" />
+        </Component>
+        <Component type="CanvasRenderer" />
+        <Component type="Image">
+          <Property name="color" value="1, 0, 0, 1" />
+          <Property name="material" value="null" />
+        </Component>
+      </Components>
+    </GameObject>
+    
+    <!-- Item Icon Template -->
+    <GameObject name="ItemIconTemplate" layer="MiniMap">
+      <Components>
+        <Component type="RectTransform">
+          <Property name="anchorMin" value="0.5, 0.5" />
+          <Property name="anchorMax" value="0.5, 0.5" />
+          <Property name="sizeDelta" value="8, 8" />
+          <Property name="pivot" value="0.5, 0.5" />
+        </Component>
+        <Component type="CanvasRenderer" />
+        <Component type="Image">
+          <Property name="color" value="1, 1, 0, 1" />
+          <Property name="material" value="null" />
+        </Component>
+      </Components>
+    </GameObject>
+    
+    <!-- Door Icon Template -->
+    <GameObject name="DoorIconTemplate" layer="MiniMap">
+      <Components>
+        <Component type="RectTransform">
+          <Property name="anchorMin" value="0.5, 0.5" />
+          <Property name="anchorMax" value="0.5, 0.5" />
+          <Property name="sizeDelta" value="5, 5" />
+          <Property name="pivot" value="0.5, 0.5" />
+        </Component>
+        <Component type="CanvasRenderer" />
+        <Component type="Image">
+          <Property name="color" value="0.5, 0.5, 1, 1" />
+          <Property name="material" value="null" />
+        </Component>
+      </Components>
+    </GameObject>
+  </IconPrefabs>
+</MiniMapPrefab>
