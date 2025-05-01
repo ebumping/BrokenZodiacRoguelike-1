@@ -1,0 +1,356 @@
+Assets\Scripts\UI\CardSelectorController.cs(4,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\CardSelectorController.cs(5,7): error CS0246: The type or namespace name 'TMPro' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CosmicMadnessUI.cs(2,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\CosmicMadnessUI.cs(6,7): error CS0246: The type or namespace name 'TMPro' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HorrorEventUI.cs(2,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\HorrorEventUI.cs(3,7): error CS0246: The type or namespace name 'TMPro' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(4,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(5,7): error CS0246: The type or namespace name 'TMPro' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(4,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(5,7): error CS0246: The type or namespace name 'TMPro' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapController.cs(3,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\MiniMapSetup.cs(2,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\SanityMiniMapEffect.cs(2,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(2,19): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(3,7): error CS0246: The type or namespace name 'TMPro' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\PlayerController.cs(9,18): error CS0260: Missing partial modifier on declaration of type 'PlayerController'; another partial declaration of this type exists
+
+Assets\Scripts\Resources\ZodiacSignil.cs(73,29): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanitySystem.cs(38,34): error CS0246: The type or namespace name 'SanityEffectsManager' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\AI\EnemyController.cs(22,46): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\UI\HorrorEventUI.cs(16,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(83,16): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CardSelectorController.cs(17,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HorrorEventUI.cs(17,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CardSelectorController.cs(18,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(137,35): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HorrorEventUI.cs(18,34): error CS0246: The type or namespace name 'Image' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HorrorEventUI.cs(19,34): error CS0246: The type or namespace name 'Slider' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(373,36): error CS0246: The type or namespace name 'WeaponData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(393,39): error CS0246: The type or namespace name 'WeaponData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(468,59): error CS0246: The type or namespace name 'DamageType' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(497,36): error CS0246: The type or namespace name 'RoomData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(567,17): error CS0246: The type or namespace name 'PlayerController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(14,34): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(63,17): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(77,17): error CS0246: The type or namespace name 'PlayerController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(78,17): error CS0246: The type or namespace name 'PlayerStats' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(79,17): error CS0246: The type or namespace name 'WeaponSystem' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacSignil.cs(80,17): error CS0246: The type or namespace name 'HealthSystem' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\CosmicAscensionAbility.cs(97,65): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbility.cs(248,59): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\CosmicAscensionAbility.cs(112,60): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbility.cs(43,16): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CardSelectorController.cs(162,34): error CS0246: The type or namespace name 'Image' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbility.cs(46,16): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CardSelectorController.cs(163,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CardSelectorController.cs(164,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CardSelectorController.cs(166,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbility.cs(213,46): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbility.cs(20,34): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\CosmicAscensionAbility.cs(158,16): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbility.cs(23,34): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\CosmicAscensionAbility.cs(1275,16): error CS0246: The type or namespace name 'ProjectileController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\CosmicAscensionAbility.cs(126,34): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\CosmicAscensionAbility.cs(1276,16): error CS0246: The type or namespace name 'EnemyController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(317,34): error CS0246: The type or namespace name 'Image' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(318,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(319,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\ProceduralHorror\HorrorEventGenerator.cs(62,17): error CS0246: The type or namespace name 'SanitySystem' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(297,41): error CS0246: The type or namespace name 'GameState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(13,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\CosmicAscensionAbility.cs(1425,49): error CS0246: The type or namespace name 'EnemyController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(14,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(14,34): error CS0246: The type or namespace name 'Slider' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(15,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(15,34): error CS0246: The type or namespace name 'Slider' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(16,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapController.cs(251,29): error CS0246: The type or namespace name 'Room' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(16,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapController.cs(292,35): error CS0246: The type or namespace name 'Room' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(19,34): error CS0246: The type or namespace name 'TMP_InputField' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(17,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapController.cs(330,42): error CS0246: The type or namespace name 'Room' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(20,34): error CS0246: The type or namespace name 'TMP_Dropdown' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapSetup.cs(13,34): error CS0246: The type or namespace name 'RawImage' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(20,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(21,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(21,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(25,34): error CS0246: The type or namespace name 'TMP_InputField' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapController.cs(12,34): error CS0246: The type or namespace name 'RawImage' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapSetup.cs(29,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(22,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(26,34): error CS0246: The type or namespace name 'TMP_InputField' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapSetup.cs(30,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(25,34): error CS0246: The type or namespace name 'Image' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapSetup.cs(31,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(27,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MiniMapSetup.cs(32,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(26,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(28,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\EldrithTransformationAbility.cs(154,16): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(27,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(32,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CosmicMadnessUI.cs(19,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\EldrithTransformationAbility.cs(95,62): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(33,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(28,34): error CS0246: The type or namespace name 'Image' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CosmicMadnessUI.cs(20,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\EldrithTransformationAbility.cs(110,60): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(37,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CosmicMadnessUI.cs(21,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(29,34): error CS0246: The type or namespace name 'Image' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(41,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CosmicMadnessUI.cs(22,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(32,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\EldrithTransformationAbility.cs(124,34): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\MainMenuController.cs(48,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CosmicMadnessUI.cs(23,34): error CS0246: The type or namespace name 'Image' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(35,34): error CS0246: The type or namespace name 'RawImage' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\CosmicMadnessUI.cs(24,34): error CS0246: The type or namespace name 'Button' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(39,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(40,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(41,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(50,34): error CS0246: The type or namespace name 'Slider' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\HUDController.cs(51,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(15,66): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(15,16): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityMiniMapEffect.cs(95,57): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityMiniMapEffect.cs(95,79): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(103,57): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(103,79): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(57,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityMiniMapEffect.cs(120,52): error CS0246: The type or namespace name 'SanityHallucination' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(117,52): error CS0246: The type or namespace name 'SanityHallucination' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\EldrithVisionAbility.cs(119,60): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(92,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityMiniMapEffect.cs(135,63): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(129,61): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(124,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityMiniMapEffect.cs(269,47): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(161,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(197,47): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(197,69): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\VoidWhisperAbility.cs(134,60): error CS0246: The type or namespace name 'ZodiacSign' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\CosmicMadnessManager.cs(536,36): error CS0246: The type or namespace name 'EnemyController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(191,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(260,46): error CS0246: The type or namespace name 'SanityHallucination' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(226,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\CosmicMadnessAbilities\VoidWhisperAbility.cs(470,52): error CS0246: The type or namespace name 'EnemyController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(259,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityMiniMapEffect.cs(30,17): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(291,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(423,44): error CS0246: The type or namespace name 'Graphic' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(326,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(359,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(13,34): error CS0246: The type or namespace name 'Image' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(390,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\GameDirector.cs(126,41): error CS0246: The type or namespace name 'GameState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(14,34): error CS0246: The type or namespace name 'TextMeshProUGUI' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(423,24): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(16,34): error CS0246: The type or namespace name 'Image' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Resources\ZodiacTransformations\ZodiacTransformationDefinitions.cs(12,34): error CS0246: The type or namespace name 'ZodiacTransformationData' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\UI\SanityUI.cs(40,17): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SlowingPuddle.cs(110,39): error CS0246: The type or namespace name 'EnemyController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanityEnemyAppearance.cs(121,57): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanityEnemyAppearance.cs(121,79): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanityEnemyAppearance.cs(132,39): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanityEnemyAppearance.cs(161,33): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanityEnemyAppearance.cs(179,37): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanityEnemyAppearance.cs(223,38): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanityEnemyAppearance.cs(258,32): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SpellManager.cs(367,47): error CS0246: The type or namespace name 'EnemyController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanityEnemyAppearance.cs(12,34): error CS0246: The type or namespace name 'EnemyController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\StatusEffectManager.cs(15,17): error CS0246: The type or namespace name 'EnemyController' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\SanityEnemyAppearance.cs(39,17): error CS0246: The type or namespace name 'SanityState' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\PlayerController.SpellSystem.cs(185,25): warning CS0109: The member 'PlayerController.TakeDamage(float)' does not hide an accessible member. The new keyword is not required.
+
+Assets\Scripts\Core\PlayerController.cs(44,46): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\Core\PlayerController.cs(45,46): error CS0234: The type or namespace name 'UI' does not exist in the namespace 'UnityEngine' (are you missing an assembly reference?)
+
+Assets\Scripts\Core\PlayerController.cs(46,34): error CS0246: The type or namespace name 'TMPro' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\PlayerController.cs(62,17): error CS0246: The type or namespace name 'ZodiacSignil' could not be found (are you missing a using directive or an assembly reference?)
+
+Assets\Scripts\Core\PlayerController.Movement.cs(11,40): error CS0102: The type 'PlayerController' already contains a definition for 'moveSpeed'
+
+Assets\Scripts\Core\PlayerController.Movement.cs(14,40): error CS0102: The type 'PlayerController' already contains a definition for 'acceleration'
+
+Assets\Scripts\Core\PlayerController.Movement.cs(45,23): error CS0102: The type 'PlayerController' already contains a definition for '_dodgeCooldownTimer'
+
+Assets\Scripts\Core\PlayerController.SpellSystem.cs(185,25): error CS0111: Type 'PlayerController' already defines a member called 'TakeDamage' with the same parameter types
+
+Assets\Scripts\Core\PlayerController.Movement.cs(495,21): error CS0111: Type 'PlayerController' already defines a member called 'ModifySpeed' with the same parameter types
+
+Assets\Scripts\Core\PlayerController.SpellSystem.cs(323,21): error CS0111: Type 'PlayerController' already defines a member called 'AddAbility' with the same parameter types
+
+Assets\Scripts\Core\PlayerController.SpellSystem.cs(349,21): error CS0111: Type 'PlayerController' already defines a member called 'RemoveAbility' with the same parameter types
+
+Assets\Scripts\Core\PlayerController.SpellSystem.cs(25,22): error CS0102: The type 'PlayerController' already contains a definition for '_isInvulnerable'
+
+Assets\Scripts\Core\PlayerController.SpellSystem.cs(164,21): error CS0111: Type 'PlayerController' already defines a member called 'SetInvulnerable' with the same parameter types
+
