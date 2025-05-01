@@ -4,37 +4,6 @@ modules = ["dotnet"]
 channel = "stable-24_05"
 
 [workflows]
-runButton = "Project"
-
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Godot Server"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "godot"
-
-[[workflows.workflow]]
-name = "Godot Server"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "godot --headless --port=5000 --no-window"
-waitForPort = 5000
-
-[[workflows.workflow]]
-name = "godot"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "cd /home/runner/codex-of-the-broken-zodiac && godot project.godot --headless"
 
 [deployment]
 run = ["sh", "-c", "godot --headless --port=5000 --no-window"]

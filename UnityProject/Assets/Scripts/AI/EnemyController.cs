@@ -1,314 +1,666 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
-using CodexOfTheBrokenZodiac.Core;
 
-namespace CodexOfTheBrokenZodiac.AI
+namespace CodexBrokenZodiac
 {
+    /// <summary>
+    /// Controls enemy behavior, AI, and combat
+    /// </summary>
     public class EnemyController : MonoBehaviour
     {
-        [Header("Stats")]
-        [SerializeField] private float maxHealth = 100f;
-        [SerializeField] private float damage = 10f;
-        [SerializeField] private float attackRange = 1.5f;
-        [SerializeField] private float attackCooldown = 1.0f;
-        [SerializeField] private float moveSpeed = 3.0f;
+        [Header("Enemy Stats")]
+        [SerializeField] private string enemyName = "Unknown Entity";
+        [SerializeField] private float movementSpeed = 3f;
         [SerializeField] private float detectionRange = 10f;
-        [SerializeField] private bool isBoss = false;
+        [SerializeField] private float attackRange = 2f;
+        [SerializeField] private float attackCooldown = 1.5f;
+        [SerializeField] private float damage = 10f;
+        [SerializeField] private DamageType damageType = DamageType.Physical;
+        [SerializeField] private int moteDropMin = 1;
+        [SerializeField] private int moteDropMax = 3;
+        
+        [Header("AI Settings")]
+        [SerializeField] private EnemyType enemyType = EnemyType.Melee;
+        [SerializeField] private AIBehavior aiBehavior = AIBehavior.Aggressive;
+        [SerializeField] private float wanderRadius = 5f;
+        [SerializeField] private float steeringSpeed = 120f;
+        [SerializeField] private bool canSensePlayerThroughWalls = false;
         
         [Header("References")]
-        [SerializeField] private Animator animator;
-        [SerializeField] private UnityEngine.UI.Slider healthBar;
-        [SerializeField] private Transform projectileSpawnPoint;
+        [SerializeField] private Transform enemyModel;
+        [SerializeField] private GameObject attackEffectPrefab;
         [SerializeField] private GameObject projectilePrefab;
+        [SerializeField] private Transform projectileSpawnPoint;
+        [SerializeField] private AudioClip attackSound;
+        [SerializeField] private AudioClip deathSound;
+        [SerializeField] private Canvas healthBarCanvas;
+        [SerializeField] private Image healthBarImage;
         
-        // Internal state
-        private float _currentHealth;
-        private bool _isActive = false;
-        private bool _canAttack = true;
-        private float _attackCooldownTimer = 0f;
-        private Vector3 _startPosition;
-        private Transform _currentTarget;
-        private Rigidbody2D _rigidbody;
-        private SpriteRenderer _spriteRenderer;
+        // Components
+        private HealthSystem healthSystem;
+        private NavMeshAgent navMeshAgent;
+        private Animator animator;
+        private AudioSource audioSource;
         
-        // AI behavior
-        public enum AIState { Idle, Patrol, Chase, Attack, Return, Stunned }
+        // State
+        private Transform playerTarget;
+        private Vector3 wanderTarget;
+        private float attackTimer;
+        private bool isAttacking;
+        private bool isStunned;
+        private bool isAggro;
+        private bool isWandering;
+        private EnemyState currentState = EnemyState.Idle;
         
-        [Header("AI")]
-        [SerializeField] private AIState currentState = AIState.Idle;
-        [SerializeField] private float patrolRadius = 5f;
-        [SerializeField] private float patrolWaitTime = 2f;
-        [SerializeField] private float returnThreshold = 15f;
-        
-        private Vector2 _patrolTarget;
-        private float _patrolWaitTimer;
-        private float _stunTimer;
+        // Cache
+        private Dictionary<ZodiacSign, float> zodiacResistances = new Dictionary<ZodiacSign, float>();
         
         private void Awake()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            // Get components
+            healthSystem = GetComponent<HealthSystem>();
+            navMeshAgent = GetComponent<NavMeshAgent>();
+            animator = GetComponentInChildren<Animator>();
+            audioSource = GetComponent<AudioSource>();
             
-            if (animator == null)
+            if (audioSource == null)
             {
-                animator = GetComponent<Animator>();
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.spatialBlend = 1f;
+                audioSource.maxDistance = 20f;
+                audioSource.rolloffMode = AudioRolloffMode.Linear;
             }
+            
+            // Set up NavMeshAgent
+            if (navMeshAgent != null)
+            {
+                navMeshAgent.speed = movementSpeed;
+                navMeshAgent.angularSpeed = steeringSpeed;
+                navMeshAgent.stoppingDistance = attackRange * 0.8f;
+            }
+            
+            // Set up health system events
+            if (healthSystem != null)
+            {
+                healthSystem.OnHealthChanged.AddListener(UpdateHealthBar);
+                healthSystem.OnDeath.AddListener(Die);
+            }
+            
+            // Initialize resistances based on enemy type
+            InitializeResistances();
         }
         
         private void Start()
         {
-            _currentHealth = maxHealth;
-            _startPosition = transform.position;
-            UpdateHealthBar();
+            // Find player
+            FindPlayer();
+            
+            // Start in idle state
+            EnterState(EnemyState.Idle);
+            
+            // Generate initial wander target
+            SetNewWanderTarget();
         }
         
         private void Update()
         {
-            if (!_isActive) return;
+            if (isStunned)
+                return;
             
-            // Update cooldowns
-            if (!_canAttack)
+            // Update attack timer
+            if (attackTimer > 0)
             {
-                _attackCooldownTimer -= Time.deltaTime;
-                if (_attackCooldownTimer <= 0)
-                {
-                    _canAttack = true;
-                }
+                attackTimer -= Time.deltaTime;
             }
             
-            // Update stun timer
-            if (currentState == AIState.Stunned)
-            {
-                _stunTimer -= Time.deltaTime;
-                if (_stunTimer <= 0)
-                {
-                    currentState = AIState.Idle;
-                }
-                return; // Don't process other states while stunned
-            }
+            // Update state machine
+            UpdateCurrentState();
             
-            // Update AI behavior based on state
+            // Update health bar rotation to face camera
+            if (healthBarCanvas != null)
+            {
+                healthBarCanvas.transform.rotation = Quaternion.LookRotation(healthBarCanvas.transform.position - Camera.main.transform.position);
+            }
+        }
+        
+        #region State Machine
+        
+        /// <summary>
+        /// Enter a new enemy state
+        /// </summary>
+        private void EnterState(EnemyState newState)
+        {
+            // Exit current state
+            ExitState(currentState);
+            
+            // Set new state
+            currentState = newState;
+            
+            // Enter new state
             switch (currentState)
             {
-                case AIState.Idle:
-                    UpdateIdleState();
+                case EnemyState.Idle:
+                    EnterIdleState();
                     break;
-                case AIState.Patrol:
-                    UpdatePatrolState();
+                case EnemyState.Wander:
+                    EnterWanderState();
                     break;
-                case AIState.Chase:
-                    UpdateChaseState();
+                case EnemyState.Chase:
+                    EnterChaseState();
                     break;
-                case AIState.Attack:
-                    UpdateAttackState();
+                case EnemyState.Attack:
+                    EnterAttackState();
                     break;
-                case AIState.Return:
-                    UpdateReturnState();
+                case EnemyState.Flee:
+                    EnterFleeState();
                     break;
             }
             
-            // Face the movement direction
-            if (_rigidbody.velocity.x != 0 && _spriteRenderer != null)
+            // Update animator
+            if (animator != null)
             {
-                _spriteRenderer.flipX = _rigidbody.velocity.x < 0;
+                animator.SetInteger("State", (int)currentState);
+            }
+        }
+        
+        /// <summary>
+        /// Exit the current enemy state
+        /// </summary>
+        private void ExitState(EnemyState state)
+        {
+            switch (state)
+            {
+                case EnemyState.Idle:
+                    ExitIdleState();
+                    break;
+                case EnemyState.Wander:
+                    ExitWanderState();
+                    break;
+                case EnemyState.Chase:
+                    ExitChaseState();
+                    break;
+                case EnemyState.Attack:
+                    ExitAttackState();
+                    break;
+                case EnemyState.Flee:
+                    ExitFleeState();
+                    break;
+            }
+        }
+        
+        /// <summary>
+        /// Update the current state based on conditions
+        /// </summary>
+        private void UpdateCurrentState()
+        {
+            switch (currentState)
+            {
+                case EnemyState.Idle:
+                    UpdateIdleState();
+                    break;
+                case EnemyState.Wander:
+                    UpdateWanderState();
+                    break;
+                case EnemyState.Chase:
+                    UpdateChaseState();
+                    break;
+                case EnemyState.Attack:
+                    UpdateAttackState();
+                    break;
+                case EnemyState.Flee:
+                    UpdateFleeState();
+                    break;
+            }
+        }
+        
+        #endregion
+        
+        #region Idle State
+        
+        private void EnterIdleState()
+        {
+            // Stop movement
+            if (navMeshAgent != null)
+            {
+                navMeshAgent.isStopped = true;
             }
         }
         
         private void UpdateIdleState()
         {
-            // Look for targets
-            FindTarget();
-            
-            // If no target, start patrolling
-            if (_currentTarget == null)
+            // Check if player is in detection range
+            if (CanDetectPlayer())
             {
-                ChangeState(AIState.Patrol);
-                SetPatrolTarget();
+                // Choose between chase and flee based on AI behavior
+                if (ShouldFlee())
+                {
+                    EnterState(EnemyState.Flee);
+                }
+                else
+                {
+                    EnterState(EnemyState.Chase);
+                }
             }
-            else
+            // Randomly start wandering
+            else if (Random.value < 0.01f) // 1% chance per frame
             {
-                ChangeState(AIState.Chase);
+                EnterState(EnemyState.Wander);
             }
         }
         
-        private void UpdatePatrolState()
+        private void ExitIdleState()
         {
-            // Look for targets while patrolling
-            FindTarget();
-            if (_currentTarget != null)
+            // Nothing specific to do when exiting idle
+        }
+        
+        #endregion
+        
+        #region Wander State
+        
+        private void EnterWanderState()
+        {
+            isWandering = true;
+            
+            // Start movement
+            if (navMeshAgent != null)
             {
-                ChangeState(AIState.Chase);
+                navMeshAgent.isStopped = false;
+                navMeshAgent.SetDestination(wanderTarget);
+            }
+        }
+        
+        private void UpdateWanderState()
+        {
+            // Check if player is in detection range
+            if (CanDetectPlayer())
+            {
+                // Choose between chase and flee based on AI behavior
+                if (ShouldFlee())
+                {
+                    EnterState(EnemyState.Flee);
+                }
+                else
+                {
+                    EnterState(EnemyState.Chase);
+                }
                 return;
             }
             
-            // Move towards patrol point
-            if (_patrolWaitTimer > 0)
+            // Check if we've reached the wander target
+            if (navMeshAgent != null && !navMeshAgent.pathPending)
             {
-                _patrolWaitTimer -= Time.deltaTime;
-                // Wait at patrol point
-                _rigidbody.velocity = Vector2.zero;
-                
-                if (animator != null)
+                if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
                 {
-                    animator.SetBool("IsMoving", false);
+                    // Choose between setting a new wander target or going idle
+                    if (Random.value < 0.7f) // 70% chance to keep wandering
+                    {
+                        SetNewWanderTarget();
+                        navMeshAgent.SetDestination(wanderTarget);
+                    }
+                    else
+                    {
+                        EnterState(EnemyState.Idle);
+                    }
                 }
             }
-            else
+        }
+        
+        private void ExitWanderState()
+        {
+            isWandering = false;
+        }
+        
+        #endregion
+        
+        #region Chase State
+        
+        private void EnterChaseState()
+        {
+            isAggro = true;
+            
+            // Start movement
+            if (navMeshAgent != null)
             {
-                // Move to patrol target
-                Vector2 direction = ((Vector2)_patrolTarget - (Vector2)transform.position).normalized;
-                _rigidbody.velocity = direction * moveSpeed;
-                
-                if (animator != null)
+                navMeshAgent.isStopped = false;
+                if (playerTarget != null)
                 {
-                    animator.SetBool("IsMoving", true);
-                }
-                
-                // Check if reached patrol point
-                float distanceToTarget = Vector2.Distance(transform.position, _patrolTarget);
-                if (distanceToTarget < 0.5f)
-                {
-                    // Reached patrol point, wait a bit
-                    _patrolWaitTimer = patrolWaitTime;
-                    
-                    // Set new patrol target
-                    SetPatrolTarget();
+                    navMeshAgent.SetDestination(playerTarget.position);
                 }
             }
         }
         
         private void UpdateChaseState()
         {
-            if (_currentTarget == null)
+            // If player is null or dead, go back to idle
+            if (playerTarget == null)
             {
-                ChangeState(AIState.Return);
+                FindPlayer();
+                if (playerTarget == null)
+                {
+                    EnterState(EnemyState.Idle);
+                    return;
+                }
+            }
+            
+            // Update destination to player position
+            if (navMeshAgent != null && playerTarget != null)
+            {
+                navMeshAgent.SetDestination(playerTarget.position);
+            }
+            
+            // Check if player is in attack range
+            if (IsInAttackRange())
+            {
+                EnterState(EnemyState.Attack);
                 return;
             }
             
-            // Check if target is too far from start position
-            float distanceFromStart = Vector2.Distance(transform.position, _startPosition);
-            if (distanceFromStart > returnThreshold)
+            // Check if player is out of detection range
+            if (!CanDetectPlayer())
             {
-                ChangeState(AIState.Return);
-                return;
+                // Return to idle or wander
+                if (Random.value < 0.5f)
+                {
+                    EnterState(EnemyState.Idle);
+                }
+                else
+                {
+                    EnterState(EnemyState.Wander);
+                }
             }
             
-            // Calculate distance to target
-            float distanceToTarget = Vector2.Distance(transform.position, _currentTarget.position);
-            
-            // If within attack range, attack
-            if (distanceToTarget <= attackRange)
+            // Check if we should flee based on health
+            if (ShouldFlee())
             {
-                ChangeState(AIState.Attack);
-                return;
-            }
-            
-            // Move towards target
-            Vector2 direction = (_currentTarget.position - transform.position).normalized;
-            _rigidbody.velocity = direction * moveSpeed;
-            
-            if (animator != null)
-            {
-                animator.SetBool("IsMoving", true);
+                EnterState(EnemyState.Flee);
             }
         }
         
-        private void UpdateAttackState()
+        private void ExitChaseState()
         {
-            // Stop moving when attacking
-            _rigidbody.velocity = Vector2.zero;
-            
-            if (_currentTarget == null)
+            // Nothing specific to do when exiting chase
+        }
+        
+        #endregion
+        
+        #region Attack State
+        
+        private void EnterAttackState()
+        {
+            // Stop movement during attack
+            if (navMeshAgent != null)
             {
-                ChangeState(AIState.Idle);
-                return;
+                navMeshAgent.isStopped = true;
             }
             
-            // Check if target moved out of range
-            float distanceToTarget = Vector2.Distance(transform.position, _currentTarget.position);
-            if (distanceToTarget > attackRange)
+            // Face the player
+            if (playerTarget != null && enemyModel != null)
             {
-                ChangeState(AIState.Chase);
-                return;
+                Vector3 direction = playerTarget.position - transform.position;
+                direction.y = 0;
+                enemyModel.rotation = Quaternion.LookRotation(direction);
             }
             
-            // Attack if possible
-            if (_canAttack)
+            // Start attack if cooldown is ready
+            if (attackTimer <= 0)
             {
                 PerformAttack();
             }
         }
         
-        private void UpdateReturnState()
+        private void UpdateAttackState()
         {
-            // Check if we can chase a target again
-            FindTarget();
-            if (_currentTarget != null)
+            // If player is null or dead, go back to idle
+            if (playerTarget == null)
             {
-                float distanceFromStart = Vector2.Distance(_currentTarget.position, _startPosition);
-                if (distanceFromStart <= returnThreshold)
+                FindPlayer();
+                if (playerTarget == null)
                 {
-                    ChangeState(AIState.Chase);
+                    EnterState(EnemyState.Idle);
                     return;
                 }
             }
             
-            // Move back to start position
-            Vector2 direction = (_startPosition - transform.position).normalized;
-            _rigidbody.velocity = direction * moveSpeed;
-            
-            if (animator != null)
+            // If attack is complete and player is out of range, chase again
+            if (!isAttacking && !IsInAttackRange())
             {
-                animator.SetBool("IsMoving", true);
+                EnterState(EnemyState.Chase);
+                return;
             }
             
-            // Check if reached start position
-            float distanceToStart = Vector2.Distance(transform.position, _startPosition);
-            if (distanceToStart < 0.5f)
+            // If attack is complete and cooldown is ready, attack again
+            if (!isAttacking && attackTimer <= 0 && IsInAttackRange())
             {
-                ChangeState(AIState.Idle);
-                _rigidbody.velocity = Vector2.zero;
+                PerformAttack();
+            }
+            
+            // Check if we should flee based on health
+            if (ShouldFlee())
+            {
+                EnterState(EnemyState.Flee);
+            }
+        }
+        
+        private void ExitAttackState()
+        {
+            isAttacking = false;
+        }
+        
+        #endregion
+        
+        #region Flee State
+        
+        private void EnterFleeState()
+        {
+            // Start movement
+            if (navMeshAgent != null)
+            {
+                navMeshAgent.isStopped = false;
                 
-                if (animator != null)
+                if (playerTarget != null)
                 {
-                    animator.SetBool("IsMoving", false);
+                    // Calculate direction away from player
+                    Vector3 fleeDirection = transform.position - playerTarget.position;
+                    fleeDirection.y = 0;
+                    fleeDirection = fleeDirection.normalized;
+                    
+                    // Set destination to a point away from player
+                    Vector3 fleeTarget = transform.position + fleeDirection * 10f;
+                    
+                    // Find a valid position on the NavMesh
+                    NavMeshHit hit;
+                    if (NavMesh.SamplePosition(fleeTarget, out hit, 10f, NavMesh.AllAreas))
+                    {
+                        navMeshAgent.SetDestination(hit.position);
+                    }
                 }
             }
         }
         
-        private void FindTarget()
+        private void UpdateFleeState()
         {
-            // Find closest player within detection range
-            PlayerController[] players = GameObject.FindObjectsOfType<PlayerController>();
-            float closestDistance = detectionRange;
-            Transform closestPlayer = null;
-            
-            foreach (var player in players)
+            // If player is null, go back to idle
+            if (playerTarget == null)
             {
-                float distance = Vector2.Distance(transform.position, player.transform.position);
-                if (distance < closestDistance)
+                EnterState(EnemyState.Idle);
+                return;
+            }
+            
+            // Check if we've reached the flee target
+            if (navMeshAgent != null && !navMeshAgent.pathPending)
+            {
+                if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
                 {
-                    closestDistance = distance;
-                    closestPlayer = player.transform;
+                    // Calculate a new flee direction
+                    EnterFleeState();
                 }
             }
             
-            _currentTarget = closestPlayer;
+            // Check if player is out of detection range
+            if (!CanDetectPlayer())
+            {
+                // Return to idle or wander
+                if (Random.value < 0.5f)
+                {
+                    EnterState(EnemyState.Idle);
+                }
+                else
+                {
+                    EnterState(EnemyState.Wander);
+                }
+            }
+            
+            // Check if we should stop fleeing based on health recovery
+            if (!ShouldFlee())
+            {
+                EnterState(EnemyState.Chase);
+            }
         }
         
-        private void SetPatrolTarget()
+        private void ExitFleeState()
         {
-            // Generate a random point within patrol radius
-            Vector2 randomDirection = Random.insideUnitCircle.normalized * Random.Range(0f, patrolRadius);
-            _patrolTarget = (Vector2)_startPosition + randomDirection;
+            // Nothing specific to do when exiting flee
         }
         
+        #endregion
+        
+        #region Helper Methods
+        
+        /// <summary>
+        /// Find the player in the scene
+        /// </summary>
+        private void FindPlayer()
+        {
+            PlayerController player = GameObject.FindObjectOfType<PlayerController>();
+            if (player != null)
+            {
+                playerTarget = player.transform;
+            }
+        }
+        
+        /// <summary>
+        /// Set a new random wander target
+        /// </summary>
+        private void SetNewWanderTarget()
+        {
+            // Get a random direction
+            Vector3 randomDirection = Random.insideUnitSphere * wanderRadius;
+            randomDirection.y = 0;
+            
+            // Add to current position
+            Vector3 targetPosition = transform.position + randomDirection;
+            
+            // Find a valid position on the NavMesh
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(targetPosition, out hit, wanderRadius, NavMesh.AllAreas))
+            {
+                wanderTarget = hit.position;
+            }
+            else
+            {
+                // If no valid position found, use a closer radius
+                randomDirection = Random.insideUnitSphere * (wanderRadius * 0.5f);
+                randomDirection.y = 0;
+                targetPosition = transform.position + randomDirection;
+                
+                if (NavMesh.SamplePosition(targetPosition, out hit, wanderRadius * 0.5f, NavMesh.AllAreas))
+                {
+                    wanderTarget = hit.position;
+                }
+                else
+                {
+                    // If still no valid position, stay in place
+                    wanderTarget = transform.position;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Check if player is in detection range
+        /// </summary>
+        private bool CanDetectPlayer()
+        {
+            if (playerTarget == null)
+                return false;
+            
+            float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
+            
+            // Check distance
+            if (distanceToPlayer > detectionRange)
+                return false;
+            
+            // Check line of sight if needed
+            if (!canSensePlayerThroughWalls)
+            {
+                RaycastHit hit;
+                Vector3 directionToPlayer = (playerTarget.position - transform.position).normalized;
+                
+                if (Physics.Raycast(transform.position, directionToPlayer, out hit, detectionRange))
+                {
+                    // Check if the ray hit the player or something else
+                    PlayerController player = hit.collider.GetComponent<PlayerController>();
+                    if (player == null)
+                    {
+                        // Hit something that's not the player
+                        return false;
+                    }
+                }
+            }
+            
+            return true;
+        }
+        
+        /// <summary>
+        /// Check if player is in attack range
+        /// </summary>
+        private bool IsInAttackRange()
+        {
+            if (playerTarget == null)
+                return false;
+            
+            float distanceToPlayer = Vector3.Distance(transform.position, playerTarget.position);
+            return distanceToPlayer <= attackRange;
+        }
+        
+        /// <summary>
+        /// Check if the enemy should flee based on health and behavior
+        /// </summary>
+        private bool ShouldFlee()
+        {
+            if (healthSystem == null)
+                return false;
+            
+            // Based on AI behavior
+            switch (aiBehavior)
+            {
+                case AIBehavior.Cowardly:
+                    // Flee if health is below 70%
+                    return healthSystem.GetHealthPercentage() < 0.7f;
+                    
+                case AIBehavior.Cautious:
+                    // Flee if health is below 30%
+                    return healthSystem.GetHealthPercentage() < 0.3f;
+                    
+                case AIBehavior.Aggressive:
+                case AIBehavior.Frenzied:
+                    // Never flee
+                    return false;
+                    
+                default:
+                    return false;
+            }
+        }
+        
+        /// <summary>
+        /// Perform an attack based on enemy type
+        /// </summary>
         private void PerformAttack()
         {
-            _canAttack = false;
-            _attackCooldownTimer = attackCooldown;
+            isAttacking = true;
+            attackTimer = attackCooldown;
             
             // Play attack animation
             if (animator != null)
@@ -316,291 +668,402 @@ namespace CodexOfTheBrokenZodiac.AI
                 animator.SetTrigger("Attack");
             }
             
-            // If ranged enemy, spawn projectile
-            if (projectilePrefab != null && projectileSpawnPoint != null)
+            // Play attack sound
+            if (audioSource != null && attackSound != null)
             {
-                // Aim towards target
-                Vector2 direction = (_currentTarget.position - projectileSpawnPoint.position).normalized;
-                GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
-                
-                // Setup projectile
-                Projectile projectileComponent = projectile.GetComponent<Projectile>();
-                if (projectileComponent != null)
+                audioSource.PlayOneShot(attackSound);
+            }
+            
+            // Perform attack based on enemy type
+            switch (enemyType)
+            {
+                case EnemyType.Melee:
+                    StartCoroutine(PerformMeleeAttack());
+                    break;
+                    
+                case EnemyType.Ranged:
+                    PerformRangedAttack();
+                    break;
+                    
+                case EnemyType.AOE:
+                    PerformAOEAttack();
+                    break;
+                    
+                case EnemyType.Caster:
+                    StartCoroutine(PerformCastAttack());
+                    break;
+                    
+                case EnemyType.SanityAttacker:
+                    PerformSanityAttack();
+                    break;
+            }
+        }
+        
+        /// <summary>
+        /// Perform a melee attack
+        /// </summary>
+        private IEnumerator PerformMeleeAttack()
+        {
+            // Wait for attack animation to reach damage point
+            yield return new WaitForSeconds(0.3f);
+            
+            // Check if player is still in range
+            if (playerTarget != null && IsInAttackRange())
+            {
+                // Get the player's health system
+                HealthSystem playerHealth = playerTarget.GetComponent<HealthSystem>();
+                if (playerHealth != null)
                 {
-                    projectileComponent.Initialize(direction, damage, 10f, -1);
+                    // Apply damage to player
+                    playerHealth.ApplyDamage(damage, damageType, playerTarget.position, gameObject);
                 }
             }
-            else
+            
+            // Show attack effect
+            if (attackEffectPrefab != null)
             {
-                // Melee attack - damage player directly if still in range
-                PlayerController player = _currentTarget.GetComponent<PlayerController>();
+                Instantiate(attackEffectPrefab, transform.position + transform.forward * 1.5f, transform.rotation);
+            }
+            
+            // Wait for attack animation to finish
+            yield return new WaitForSeconds(0.5f);
+            
+            isAttacking = false;
+        }
+        
+        /// <summary>
+        /// Perform a ranged attack
+        /// </summary>
+        private void PerformRangedAttack()
+        {
+            if (projectilePrefab != null && projectileSpawnPoint != null && playerTarget != null)
+            {
+                // Create projectile
+                GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+                
+                // Set up projectile
+                ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+                if (projectileController != null)
+                {
+                    // Calculate direction to player
+                    Vector3 directionToPlayer = (playerTarget.position - projectileSpawnPoint.position).normalized;
+                    
+                    // Initialize projectile
+                    projectileController.Initialize(damage, 10f, damageType, gameObject, directionToPlayer);
+                }
+            }
+            
+            // End attack immediately since projectile is fire and forget
+            isAttacking = false;
+        }
+        
+        /// <summary>
+        /// Perform an area of effect attack
+        /// </summary>
+        private void PerformAOEAttack()
+        {
+            // Create explosion effect
+            if (attackEffectPrefab != null)
+            {
+                Instantiate(attackEffectPrefab, transform.position, Quaternion.identity);
+            }
+            
+            // Damage all players in range
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
+            foreach (Collider hitCollider in hitColliders)
+            {
+                // Check if it's a player
+                PlayerController player = hitCollider.GetComponent<PlayerController>();
                 if (player != null)
                 {
-                    player.TakeDamage(damage);
+                    // Get the player's health system
+                    HealthSystem playerHealth = player.GetComponent<HealthSystem>();
+                    if (playerHealth != null)
+                    {
+                        // Apply damage to player
+                        playerHealth.ApplyDamage(damage, damageType, player.transform.position, gameObject);
+                    }
                 }
             }
+            
+            // End attack immediately since AOE is instant
+            isAttacking = false;
         }
         
-        private void ChangeState(AIState newState)
+        /// <summary>
+        /// Perform a cast attack with charge-up time
+        /// </summary>
+        private IEnumerator PerformCastAttack()
         {
-            if (currentState == newState) return;
-            
-            // Exit previous state
-            switch (currentState)
+            // Show charging effect
+            GameObject chargingEffect = null;
+            if (attackEffectPrefab != null)
             {
-                case AIState.Attack:
-                    if (animator != null)
-                    {
-                        animator.SetBool("IsAttacking", false);
-                    }
-                    break;
+                chargingEffect = Instantiate(attackEffectPrefab, transform.position, Quaternion.identity);
+                chargingEffect.transform.SetParent(transform);
             }
             
-            // Enter new state
-            currentState = newState;
+            // Wait for cast time
+            yield return new WaitForSeconds(1f);
             
-            switch (newState)
+            // Destroy charging effect
+            if (chargingEffect != null)
             {
-                case AIState.Idle:
-                    _rigidbody.velocity = Vector2.zero;
-                    if (animator != null)
-                    {
-                        animator.SetBool("IsMoving", false);
-                    }
-                    break;
-                case AIState.Attack:
-                    _rigidbody.velocity = Vector2.zero;
-                    if (animator != null)
-                    {
-                        animator.SetBool("IsAttacking", true);
-                    }
-                    break;
-                case AIState.Stunned:
-                    _rigidbody.velocity = Vector2.zero;
-                    if (animator != null)
-                    {
-                        animator.SetTrigger("Stunned");
-                    }
-                    break;
-            }
-        }
-        
-        public void SetupEnemy(float health, float attackDamage)
-        {
-            maxHealth = health;
-            _currentHealth = health;
-            damage = attackDamage;
-            
-            UpdateHealthBar();
-        }
-        
-        public void Activate()
-        {
-            _isActive = true;
-            currentState = AIState.Idle;
-        }
-        
-        public void Deactivate()
-        {
-            _isActive = false;
-            _rigidbody.velocity = Vector2.zero;
-            
-            if (animator != null)
-            {
-                animator.SetBool("IsMoving", false);
-                animator.SetBool("IsAttacking", false);
-            }
-        }
-        
-        public void TakeDamage(float amount)
-        {
-            if (!_isActive) return;
-            
-            _currentHealth -= amount;
-            UpdateHealthBar();
-            
-            // Play hit animation
-            if (animator != null)
-            {
-                animator.SetTrigger("Hit");
+                Destroy(chargingEffect);
             }
             
-            // Check for death
-            if (_currentHealth <= 0)
+            // Perform actual attack (similar to ranged attack)
+            if (projectilePrefab != null && projectileSpawnPoint != null && playerTarget != null)
             {
-                Die();
-                return;
-            }
-            
-            // Chance to be stunned when hit
-            if (!isBoss && Random.value < 0.2f)
-            {
-                Stun(0.5f);
-            }
-            
-            // If this is the first hit from player, chase them
-            if (currentState == AIState.Idle || currentState == AIState.Patrol)
-            {
-                FindTarget();
-                if (_currentTarget != null)
+                // Create projectile
+                GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+                
+                // Set up projectile
+                ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+                if (projectileController != null)
                 {
-                    ChangeState(AIState.Chase);
+                    // Calculate direction to player
+                    Vector3 directionToPlayer = (playerTarget.position - projectileSpawnPoint.position).normalized;
+                    
+                    // Initialize projectile with increased damage due to cast time
+                    projectileController.Initialize(damage * 1.5f, 8f, damageType, gameObject, directionToPlayer);
                 }
+            }
+            
+            // End attack
+            isAttacking = false;
+        }
+        
+        /// <summary>
+        /// Perform a sanity attack that affects player's sanity
+        /// </summary>
+        private void PerformSanityAttack()
+        {
+            if (playerTarget != null)
+            {
+                // Get the player's sanity system
+                SanitySystem playerSanity = playerTarget.GetComponent<SanitySystem>();
+                if (playerSanity != null)
+                {
+                    // Apply sanity damage
+                    playerSanity.ApplySanityDamage(damage * 0.5f);
+                }
+                
+                // Also apply some regular damage
+                HealthSystem playerHealth = playerTarget.GetComponent<HealthSystem>();
+                if (playerHealth != null)
+                {
+                    playerHealth.ApplyDamage(damage * 0.3f, DamageType.Sanity, playerTarget.position, gameObject);
+                }
+            }
+            
+            // Show sanity attack effect
+            if (attackEffectPrefab != null)
+            {
+                Instantiate(attackEffectPrefab, transform.position, Quaternion.identity);
+            }
+            
+            // End attack
+            isAttacking = false;
+        }
+        
+        /// <summary>
+        /// Apply a stun effect to the enemy
+        /// </summary>
+        public void ApplyStun(float duration)
+        {
+            StartCoroutine(StunCoroutine(duration));
+        }
+        
+        /// <summary>
+        /// Coroutine to handle stunning
+        /// </summary>
+        private IEnumerator StunCoroutine(float duration)
+        {
+            isStunned = true;
+            
+            // Stop movement
+            if (navMeshAgent != null)
+            {
+                navMeshAgent.isStopped = true;
+            }
+            
+            // Update animator
+            if (animator != null)
+            {
+                animator.SetBool("Stunned", true);
+            }
+            
+            yield return new WaitForSeconds(duration);
+            
+            isStunned = false;
+            
+            // Resume movement
+            if (navMeshAgent != null)
+            {
+                navMeshAgent.isStopped = false;
+            }
+            
+            // Update animator
+            if (animator != null)
+            {
+                animator.SetBool("Stunned", false);
             }
         }
         
-        public void Stun(float duration)
+        /// <summary>
+        /// Initialize resistances based on enemy type
+        /// </summary>
+        private void InitializeResistances()
         {
-            if (isBoss) return; // Bosses are immune to stun
+            // Default resistances (1.0 = normal damage)
+            foreach (ZodiacSign sign in System.Enum.GetValues(typeof(ZodiacSign)))
+            {
+                zodiacResistances[sign] = 1.0f;
+            }
             
-            _stunTimer = duration;
-            ChangeState(AIState.Stunned);
+            // Apply specific resistances based on enemy type
+            switch (enemyType)
+            {
+                case EnemyType.Melee:
+                    zodiacResistances[ZodiacSign.Taurus] = 0.7f; // Resistant to Taurus (earth/physical)
+                    zodiacResistances[ZodiacSign.Gemini] = 1.3f; // Weak to Gemini (air/mobility)
+                    break;
+                    
+                case EnemyType.Ranged:
+                    zodiacResistances[ZodiacSign.Sagittarius] = 0.7f; // Resistant to Sagittarius (range)
+                    zodiacResistances[ZodiacSign.Aries] = 1.3f; // Weak to Aries (speed/aggression)
+                    break;
+                    
+                case EnemyType.AOE:
+                    zodiacResistances[ZodiacSign.Leo] = 0.7f; // Resistant to Leo (fire/aoe)
+                    zodiacResistances[ZodiacSign.Scorpio] = 1.3f; // Weak to Scorpio (water/poison)
+                    break;
+                    
+                case EnemyType.Caster:
+                    zodiacResistances[ZodiacSign.Pisces] = 0.7f; // Resistant to Pisces (water/magic)
+                    zodiacResistances[ZodiacSign.Virgo] = 1.3f; // Weak to Virgo (earth/purity)
+                    break;
+                    
+                case EnemyType.SanityAttacker:
+                    zodiacResistances[ZodiacSign.Aquarius] = 0.7f; // Resistant to Aquarius (air/mind)
+                    zodiacResistances[ZodiacSign.Libra] = 1.3f; // Weak to Libra (air/balance)
+                    break;
+            }
         }
         
+        /// <summary>
+        /// Get the resistance multiplier for a specific zodiac sign
+        /// </summary>
+        public float GetResistanceForZodiacSign(ZodiacSign sign)
+        {
+            if (zodiacResistances.ContainsKey(sign))
+            {
+                return zodiacResistances[sign];
+            }
+            return 1.0f;
+        }
+        
+        /// <summary>
+        /// Update the health bar UI
+        /// </summary>
+        private void UpdateHealthBar(float currentHealth, float maxHealth)
+        {
+            if (healthBarImage != null)
+            {
+                healthBarImage.fillAmount = currentHealth / maxHealth;
+            }
+        }
+        
+        /// <summary>
+        /// Handle death
+        /// </summary>
         private void Die()
         {
+            // Play death sound
+            if (audioSource != null && deathSound != null)
+            {
+                AudioSource.PlayClipAtPoint(deathSound, transform.position);
+            }
+            
+            // Stop movement
+            if (navMeshAgent != null)
+            {
+                navMeshAgent.isStopped = true;
+                navMeshAgent.enabled = false;
+            }
+            
             // Play death animation
             if (animator != null)
             {
-                animator.SetTrigger("Death");
+                animator.SetTrigger("Die");
             }
             
-            // Disable components
-            _isActive = false;
-            GetComponent<Collider2D>().enabled = false;
-            _rigidbody.velocity = Vector2.zero;
+            // Disable collider
+            Collider enemyCollider = GetComponent<Collider>();
+            if (enemyCollider != null)
+            {
+                enemyCollider.enabled = false;
+            }
             
-            // Register enemy defeat with game manager
-            GameManager.Instance?.EnemyDefeated();
+            // Disable this script
+            enabled = false;
             
-            // Drop loot - typically handled by a separate loot component
+            // Drop loot
+            DropLoot();
             
-            // Destroy after animation
-            StartCoroutine(DestroyAfterDelay(2f));
+            // Destroy game object after delay
+            Destroy(gameObject, 3f);
         }
         
-        private IEnumerator DestroyAfterDelay(float delay)
+        /// <summary>
+        /// Drop loot when enemy dies
+        /// </summary>
+        private void DropLoot()
         {
-            yield return new WaitForSeconds(delay);
+            // Implement loot dropping logic here
+            // For example, instantiate mote prefabs at enemy position
             
-            // Notify room controller of enemy death
-            RoomController room = GetComponentInParent<RoomController>();
-            if (room != null)
-            {
-                room.CheckRoomClear();
-            }
-            
-            // Destroy the enemy
-            Destroy(gameObject);
+            // TODO: Replace with actual mote prefab and dropping logic
+            int moteCount = Random.Range(moteDropMin, moteDropMax + 1);
+            Debug.Log($"{enemyName} dropped {moteCount} motes");
         }
         
-        private void UpdateHealthBar()
-        {
-            if (healthBar != null)
-            {
-                healthBar.value = _currentHealth / maxHealth;
-            }
-        }
-        
-        // For debugging enemy behavior
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, attackRange);
-            
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, detectionRange);
-            
-            if (Application.isPlaying && _isActive && currentState == AIState.Patrol)
-            {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawLine(transform.position, _patrolTarget);
-            }
-        }
-        
-        // Used by Unity's animation events
-        public void OnAttackAnimationHit()
-        {
-            // Called during animation to time the actual hit with the animation
-            if (_currentTarget != null && Vector2.Distance(transform.position, _currentTarget.position) <= attackRange)
-            {
-                PlayerController player = _currentTarget.GetComponent<PlayerController>();
-                if (player != null)
-                {
-                    player.TakeDamage(damage);
-                }
-            }
-        }
+        #endregion
     }
     
-    // Unity doesn't have a built-in Projectile class, so using the one from PlayerController
-    // In a real implementation, you'd have a shared Projectile class used by both players and enemies
-    public class Projectile : MonoBehaviour
+    /// <summary>
+    /// Types of enemies
+    /// </summary>
+    public enum EnemyType
     {
-        private Vector2 _direction;
-        private float _damage;
-        private float _speed;
-        private int _ownerId;
-        private bool _isVisualOnly;
-        private float _lifetime = 5.0f;
-        
-        public void Initialize(Vector2 direction, float damage, float speed, int ownerId, bool isVisualOnly = false)
-        {
-            _direction = direction.normalized;
-            _damage = damage;
-            _speed = speed;
-            _ownerId = ownerId;
-            _isVisualOnly = isVisualOnly;
-            
-            // Rotate to face direction
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
-            
-            Destroy(gameObject, _lifetime);
-        }
-        
-        private void Update()
-        {
-            // Move the projectile
-            transform.position += (Vector3)(_direction * _speed * Time.deltaTime);
-        }
-        
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (_isVisualOnly) return; // Visual-only projectiles don't do damage
-            
-            // Check if we hit an enemy
-            EnemyController enemy = other.GetComponent<EnemyController>();
-            if (enemy != null && _ownerId != -1) // -1 is used for enemy projectiles
-            {
-                enemy.TakeDamage(_damage);
-                DestroyProjectile();
-                return;
-            }
-            
-            // Check if we hit a player (that isn't the owner)
-            PlayerController player = other.GetComponent<PlayerController>();
-            if (player != null && _ownerId == -1) // Player can be hit by enemy projectiles
-            {
-                player.TakeDamage(_damage);
-                DestroyProjectile();
-                return;
-            }
-            
-            // Check for environment collision
-            if (other.CompareTag("Environment"))
-            {
-                DestroyProjectile();
-            }
-        }
-        
-        private void DestroyProjectile()
-        {
-            // Play hit effect
-            // TODO: Instantiate particle effect
-            
-            // Destroy the projectile
-            Destroy(gameObject);
-        }
+        Melee,          // Close-range attackers
+        Ranged,         // Shoot projectiles from a distance
+        AOE,            // Area of effect attacks
+        Caster,         // Cast spells with charge-up time
+        SanityAttacker  // Attacks that primarily affect sanity
+    }
+    
+    /// <summary>
+    /// AI behaviors for enemies
+    /// </summary>
+    public enum AIBehavior
+    {
+        Aggressive,     // Always attack, never retreat
+        Cautious,       // Retreat when low on health
+        Cowardly,       // Retreat frequently and keep distance
+        Frenzied        // More aggressive as health decreases
+    }
+    
+    /// <summary>
+    /// States for the enemy state machine
+    /// </summary>
+    public enum EnemyState
+    {
+        Idle,           // Not moving or doing anything
+        Wander,         // Moving around randomly
+        Chase,          // Pursuing the player
+        Attack,         // Attacking the player
+        Flee            // Running away from the player
     }
 }
